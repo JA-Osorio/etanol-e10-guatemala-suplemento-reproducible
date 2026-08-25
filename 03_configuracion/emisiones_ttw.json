@@ -1,0 +1,37 @@
+{
+  "source_csv": "01_datos/insumos_publicables/eia_motor_gasolina_gtm_1986_2024.csv",
+  "source_url": "https://www.eia.gov/opendata/bulkfiles.php",
+  "eia_series_id": "INTL.62-2-GTM-TJ.A",
+  "observed_start_year": 1986,
+  "observed_end_year": 2024,
+  "forecast_start_year": 2025,
+  "forecast_end_year": 2030,
+  "fit_start_year": 2015,
+  "fit_end_year": 2024,
+  "co2_factor_tonnes_per_tj": 69.3,
+  "ethanol_to_gasoline_lhv_ratio": 0.659375,
+  "lhv_ratio_provenance": "reconstructed_from_published_e10_reduction_to_preserve_exact_controls; printed_heating_values_were_rounded",
+  "blend_shares": {
+    "E10": 0.1,
+    "E15": 0.15,
+    "E20": 0.2
+  },
+  "published_controls": [
+    {
+      "period_id": "historical_1986_2023",
+      "year_start": 1986,
+      "year_end": 2023,
+      "reference_co2_tonnes": 104318087,
+      "E10_co2_tonnes": 97197053,
+      "E10_avoided_co2_tonnes": 7121034
+    },
+    {
+      "period_id": "prospective_2026_2030",
+      "year_start": 2026,
+      "year_end": 2030,
+      "reference_co2_tonnes": 41728481,
+      "E10_co2_tonnes": 38879982,
+      "E10_avoided_co2_tonnes": 2848499
+    }
+  ]
+}

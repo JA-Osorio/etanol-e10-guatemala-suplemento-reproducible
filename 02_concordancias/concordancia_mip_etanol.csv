@@ -1,0 +1,5 @@
+codigo,producto,uso_en_modelo,tratamiento,justificacion
+P068,"Gasolinas, diésel oil y fuel oils",transmision_costos,insumo_energetico,"La MIP agrupa los combustibles; la fracción atribuible a gasolina se parametriza."
+P010,"Caña de azúcar",contrafactual_domestico,alternativa_agricola,"Aproximación normalizada al eslabón agrícola; no representa producción observada de alcohol carburante."
+P052,"Azúcar de caña refinada y sin refinar y melazas",contrafactual_domestico,alternativa_agroindustrial,"Aproximación normalizada al eslabón de azúcar y melaza; no representa producción observada de alcohol carburante."
+P055,"Bebidas alcohólicas; tabaco elaborado",contrafactual_domestico,alternativa_manufacturera,"Producto manufacturero más próximo, pero agrupado con bebidas y tabaco; se reporta por separado."

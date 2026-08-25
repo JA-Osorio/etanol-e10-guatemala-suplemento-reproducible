@@ -1,0 +1,7 @@
+fecha,producto,mercado,condicion_entrega,valor_usd_galon,uso,fuente_url,nota
+2026-06-26,alcohol_carburante,Illinois,FOB_R,1.82,referencia_precio,https://www.ams.usda.gov/mnreports/ams_3616.pdf,"Observación semanal de USDA AMS; no incluye entrega en Guatemala."
+2026-06-22,gasolina_regular,US_Gulf_Coast,venta_convencional,2.991,calculo_promedio,https://www.eia.gov/dnav/pet/hist/eer_epmru_pf4_rgc_dpgD.htm,"Precio diario usado en el promedio contemporáneo."
+2026-06-23,gasolina_regular,US_Gulf_Coast,venta_convencional,2.950,calculo_promedio,https://www.eia.gov/dnav/pet/hist/eer_epmru_pf4_rgc_dpgD.htm,"Precio diario usado en el promedio contemporáneo."
+2026-06-24,gasolina_regular,US_Gulf_Coast,venta_convencional,2.858,calculo_promedio,https://www.eia.gov/dnav/pet/hist/eer_epmru_pf4_rgc_dpgD.htm,"Precio diario usado en el promedio contemporáneo."
+2026-06-25,gasolina_regular,US_Gulf_Coast,venta_convencional,3.027,calculo_promedio,https://www.eia.gov/dnav/pet/hist/eer_epmru_pf4_rgc_dpgD.htm,"Precio diario usado en el promedio contemporáneo."
+2026-06-26,gasolina_regular,US_Gulf_Coast,venta_convencional,3.006,calculo_promedio,https://www.eia.gov/dnav/pet/hist/eer_epmru_pf4_rgc_dpgD.htm,"Precio diario usado en el promedio contemporáneo."

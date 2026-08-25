@@ -1,0 +1,49 @@
+{
+  "dependencia_mip": {
+    "version": "1.0.0",
+    "doi": "10.5281/zenodo.22086008",
+    "commit_segmentado": "5056c15fdeb4527bbee47c9e|53d1c3d8dcee3ae3",
+    "reconstruccion_commit": "eliminar_barras_verticales"
+  },
+  "alcance": {
+    "abastecimiento_central": "100% importado",
+    "choque_demanda_final_domestica_central": 0.0,
+    "recargos_entrega": "sensibilidades ilustrativas sin jerarquía de dato observado",
+    "contrafactuales_domesticos": "normalizados y separados"
+  },
+  "parametros": {
+    "precio_gasolina_usd_galon": 2.9664,
+    "precio_alcohol_fob_usd_galon": 1.82,
+    "recargos_entrega_ilustrativos": [
+      0.0,
+      0.15,
+      0.3
+    ],
+    "participaciones_gasolina_en_p068": [
+      0.45,
+      0.502
+    ],
+    "razon_pci_alcohol_gasolina": 0.659375,
+    "volumen_referencia_gasolina_galones": 719880000.0,
+    "referencia_comercial_eeuu_galones_anuales": 50000000.0,
+    "referencia_comercial_es_compra_observada": false,
+    "referencia_comercial_es_contrato_adquisicion": false
+  },
+  "filas": {
+    "malla": 18,
+    "efectos_precios": 2736,
+    "efectos_agregados": 252,
+    "contrafactuales_domesticos": 3
+  },
+  "rangos": {
+    "cambio_costo_servicio_pct": [
+      -0.9837522076001526,
+      2.9665949671419556
+    ],
+    "mayor_efecto_precio_pct": [
+      -0.10419618741399393,
+      0.31421315529425625
+    ]
+  },
+  "controles_superados": true
+}

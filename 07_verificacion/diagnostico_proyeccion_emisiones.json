@@ -1,0 +1,23 @@
+{
+  "equation": "ln(energy_tj) = intercept_at_center + slope_per_year * (year - center_year)",
+  "fit": {
+    "annual_growth_rate": 0.04593989700451506,
+    "center_year": 2015,
+    "fit_end_year": 2024,
+    "fit_start_year": 2015,
+    "intercept_at_center": 11.09129381037133,
+    "n_observations": 10,
+    "r_squared_log_scale": 0.9214271219208949,
+    "rmse_log_scale": 0.0376732385538687,
+    "slope_per_year": 0.04491590414913126
+  },
+  "model": "ordinary_least_squares_on_log_energy",
+  "retransformation": "exp_without_smearing_correction",
+  "source_metadata": {
+    "last_updated": "2026-07-02T16:19:06-04:00",
+    "name": "Motor gasoline consumption, Guatemala, Annual",
+    "series_id": "INTL.62-2-GTM-TJ.A",
+    "source": "EIA, U.S. Energy Information Administration",
+    "units": "terajoules"
+  }
+}

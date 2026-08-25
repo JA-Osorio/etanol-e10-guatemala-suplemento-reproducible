@@ -1,0 +1,23 @@
+cff-version: "1.2.0"
+message: "Si utiliza este material suplementario, cite la versión archivada indicada en este archivo."
+title: "E10 Guatemala: material suplementario reproducible"
+type: software
+authors:
+  - family-names: "Osorio"
+    given-names: "Juan Alejandro"
+    orcid: "https://orcid.org/0009-0001-4260-772X"
+  - family-names: "Villatoro"
+    given-names: "Silvia Patricia"
+  - family-names: "Salguero"
+    given-names: "Noé"
+version: 0.1.0
+date-released: 2026-08-24
+repository-code: "https://github.com/JA-Osorio/etanol-e10-guatemala-suplemento-reproducible"
+license: MIT
+keywords:
+  - "E10"
+  - "etanol"
+  - "emisiones TTW"
+  - "insumo-producto"
+  - "Guatemala"
+  - "reproducibilidad"

@@ -1,0 +1,3 @@
+year_start,year_end,scenario_id,published_reference_co2_tonnes,eia_reference_co2_tonnes,absolute_difference_tonnes,relative_difference,interpretation
+1986,2023,E10,104318087.0,111506255.57200019,7188168.572000191,0.06890625373527204,different_source_lineage_not_a_reproduction_error
+2026,2030,E10,41728481.0,40837034.67381914,-891446.3261808604,-0.021363018849903992,different_source_lineage_not_a_reproduction_error

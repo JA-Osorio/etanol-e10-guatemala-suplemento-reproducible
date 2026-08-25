@@ -1,0 +1,28 @@
+control,valor,esperado,cumple
+sha256_productos,coincide,coincide,True
+sha256_a_domestica,coincide,coincide,True
+sha256_a_importada,coincide,coincide,True
+sha256_a_total,coincide,coincide,True
+sha256_leontief_domestica,coincide,coincide,True
+sha256_coeficientes_primarios,coincide,coincide,True
+sha256_produccion_utilizacion,coincide,coincide,True
+precio_gasolina_config_vs_promedio_csv,2.9664,2.9664,True
+precio_alcohol_config_vs_referencia_fob_csv,1.82,1.82,True
+version_mip_fijada,1.0.0,1.0.0,True
+doi_mip_fijado,10.5281/zenodo.22086008,10.5281/zenodo.22086008,True
+residuo_inversa_leontief_domestica,5.10702591327572e-15,<=1e-10,True
+residuo_a_total_menos_domestica_importada,1.0130785099704553e-15,<=1e-12,True
+malla_recargos_esperada,"[0.0, 0.15, 0.3]","[0.0, 0.15, 0.3]",True
+malla_participaciones_p068_esperada,"[0.45, 0.502]","[0.45, 0.502]",True
+malla_balanceada_por_recargo,"{""0.0"": 6, ""0.15"": 6, ""0.3"": 6}",igual número de combinaciones por recargo,True
+numero_combinaciones_malla,18,18,True
+cobertura_agregaciones_productos,152,152,True
+numero_filas_agregadas,252,252,True
+equivalencia_energetica_max_residuo_gal,0.0,<=1e-6,True
+identidad_costo_servicio_max_residuo,2.220446049250313e-16,<=1e-12,True
+identidad_referencia_comercial_sobre_requerimiento_max_residuo_gal,0.0,<=1e-6,True
+escenario_central_sin_choque_domestico,0.0,0.0,True
+recargos_no_marcados_como_observados,0,0,True
+precios_ajustados_no_marcados_como_costo_entregado_observado,0,0,True
+contrafactuales_proxy_no_combinados,1,1,True
+escenario_minimo_diez_por_ciento,0.1,0.1,True

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "e10-gt-suplemento"
+version = "0.1.0"
+description = "Material suplementario reproducible para escenarios E10, E15 y E20 en Guatemala"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=1.24,<3",
+  "matplotlib>=3.7,<4",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<9"]
+
+[project.scripts]
+e10-gt-reproducir = "e10_gt.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "04_reproduccion_python/src"}
+
+[tool.setuptools.packages.find]
+where = ["04_reproduccion_python/src"]
+
+[tool.pytest.ini_options]
+testpaths = ["07_verificacion/tests"]

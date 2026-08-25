@@ -1,0 +1,23 @@
+{
+  "moneda_precios": "USD_por_galon",
+  "volumen_referencia_gasolina_galones": 719880000.0,
+  "anio_volumen_referencia": 2023,
+  "precio_gasolina_usd_galon": 2.9664,
+  "precio_alcohol_carburante_fob_usd_galon": 1.82,
+  "recargo_entrega_caso_referencia_fraccion": 0.15,
+  "recargo_entrega_caso_referencia_es_observado": false,
+  "recargos_entrega_sensibilidad": [0.0, 0.15, 0.30],
+  "razon_pci_alcohol_gasolina": 0.659375,
+  "participacion_gasolina_en_p068_caso_referencia": 0.45,
+  "participaciones_gasolina_en_p068_sensibilidad": [0.45, 0.502],
+  "referencia_comercial_eeuu_galones_anuales": 50000000.0,
+  "mezclas": {
+    "E10": 0.10,
+    "E15": 0.15,
+    "E20": 0.20
+  },
+  "contrafactual_domestico": {
+    "choque_demanda_final_millones_quetzales": 1.0,
+    "productos_alternativos": ["P010", "P052", "P055"]
+  }
+}

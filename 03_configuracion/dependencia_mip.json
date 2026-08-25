@@ -1,0 +1,45 @@
+{
+  "nombre": "MIP Guatemala 2013 reproducible",
+  "version_dataset": "1.0.0",
+  "doi": "10.5281/zenodo.22086008",
+  "repositorio": "https://github.com/JA-Osorio/mip-guatemala-2013-reproducible",
+  "commit_fijado_partes": ["5056c15fdeb4527bbee47c9e", "53d1c3d8dcee3ae3"],
+  "raiz_descarga_base": "https://raw.githubusercontent.com/JA-Osorio/mip-guatemala-2013-reproducible",
+  "archivos": [
+    {
+      "id": "productos",
+      "ruta": "02_resultados_y_diccionario/productos_2013.csv",
+      "sha256": "2101df76af6295d722348aa86fda083172cffb369168a55afeb24c20a481d88c"
+    },
+    {
+      "id": "a_domestica",
+      "ruta": "02_resultados_y_diccionario/matrices/A_domestica_2013.csv",
+      "sha256": "0f0a403634fd25d519b836e4a96c7e0acaaa04d1024c417110c58e985ea2db97"
+    },
+    {
+      "id": "a_importada",
+      "ruta": "02_resultados_y_diccionario/matrices/A_importada_2013.csv",
+      "sha256": "4c1c64c3f32f213effbe61b2f19c1f1ed9cc426457cdf4b12fa1b086ee73a972"
+    },
+    {
+      "id": "a_total",
+      "ruta": "02_resultados_y_diccionario/matrices/A_total_insumos_2013.csv",
+      "sha256_partes": ["1b4d722be905397f52af418ece", "597a75586b7f2668bd41fa524669fc0c6aabe", "5"]
+    },
+    {
+      "id": "leontief_domestica",
+      "ruta": "02_resultados_y_diccionario/matrices/Leontief_domestica_2013.csv",
+      "sha256": "e86d9c30de7e0944187df1af18a8e09a55172304ee8df52672eb0b3ed5b3ef88"
+    },
+    {
+      "id": "coeficientes_primarios",
+      "ruta": "02_resultados_y_diccionario/vectores/coeficientes_primarios_2013.csv",
+      "sha256": "a2ca9499d2312737423b2798d703c19ac42b30cf3423cbaf371f6108d00dcd85"
+    },
+    {
+      "id": "produccion_utilizacion",
+      "ruta": "02_resultados_y_diccionario/vectores/produccion_y_utilizacion_2013.csv",
+      "sha256": "2e7b27d44e16c79a35472f777ed4a223b7f4125662d9e63216e2020b1bbef9a1"
+    }
+  ]
+}

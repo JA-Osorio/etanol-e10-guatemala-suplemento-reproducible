@@ -1,0 +1,38 @@
+name: validar-suplemento
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Instalar
+        run: python -m pip install -e '.[test]'
+      - name: Ejecutar pruebas
+        run: pytest -q
+      - name: Verificar alcance de escenarios
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          needle = "e" + str(5)
+          excluded = {".git"}
+          hits = []
+          for path in Path(".").rglob("*"):
+              if not path.is_file() or any(part in excluded for part in path.parts):
+                  continue
+              try:
+                  text = path.read_text(encoding="utf-8")
+              except (UnicodeDecodeError, OSError):
+                  continue
+              if needle in text.casefold() or needle in path.as_posix().casefold():
+                  hits.append(path.as_posix())
+          if hits:
+              raise SystemExit("Se detectó contenido fuera del alcance: " + ", ".join(hits))
+          PY

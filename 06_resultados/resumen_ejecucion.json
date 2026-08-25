@@ -1,0 +1,30 @@
+{
+  "abastecimiento_central": "importado",
+  "economia_controles": {
+    "superados": 27,
+    "total": 27
+  },
+  "emisiones_controles": {
+    "superados": 9,
+    "total": 9
+  },
+  "escenario_base": "E10",
+  "figuras": [
+    "06_resultados/figuras/reduccion_ttw_por_mezcla.png",
+    "06_resultados/figuras/sensibilidad_costo_servicio.png",
+    "06_resultados/figuras/e10_efectos_precio_mip_caso_ilustrativo.png"
+  ],
+  "mezclas_superiores": [
+    "E15",
+    "E20"
+  ],
+  "transiciones_controles": {
+    "superados": 5,
+    "total": 5
+  },
+  "verificacion_alcance": {
+    "archivos_fuera_alcance": 0,
+    "estado": "PASS"
+  },
+  "version": "0.1.0"
+}

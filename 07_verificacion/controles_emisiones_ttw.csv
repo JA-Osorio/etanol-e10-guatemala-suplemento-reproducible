@@ -1,0 +1,10 @@
+check_id,check_type,computed,expected,difference,status
+published_historical_1986_2023_scenario_co2_tonnes,exact_integer,97197053,97197053,0,PASS
+published_historical_1986_2023_avoided_co2_tonnes,exact_integer,7121034,7121034,0,PASS
+published_prospective_2026_2030_scenario_co2_tonnes,exact_integer,38879982,38879982,0,PASS
+published_prospective_2026_2030_avoided_co2_tonnes,exact_integer,2848499,2848499,0,PASS
+eia_observed_year_coverage,boolean,1986-2024; n=39,1986-2024; n=39,,PASS
+forecast_year_coverage,boolean,"[2025, 2026, 2027, 2028, 2029, 2030]","[2025, 2026, 2027, 2028, 2029, 2030]",,PASS
+scenario_set,boolean,"['E10', 'E15', 'E20']","['E10', 'E15', 'E20']",,PASS
+minimum_blend_share,boolean,0.1,>=0.10,,PASS
+positive_energy,boolean,True,True,,PASS

@@ -1,0 +1,42 @@
+{
+  "title": "E10 Guatemala: material suplementario reproducible",
+  "upload_type": "software",
+  "description": "Código, datos publicables, controles y resultados para reproducir el análisis de emisiones TTW y reconstruir el análisis económico de E10 en Guatemala, con transiciones hipotéticas a E15 y E20.",
+  "creators": [
+    {
+      "name": "Osorio, Juan Alejandro",
+      "orcid": "0009-0001-4260-772X"
+    },
+    {
+      "name": "Villatoro, Silvia Patricia"
+    },
+    {
+      "name": "Salguero, Noé"
+    }
+  ],
+  "version": "0.1.0",
+  "language": "spa",
+  "access_right": "open",
+  "license": "mit",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/JA-Osorio/etanol-e10-guatemala-suplemento-reproducible",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://doi.org/10.5281/zenodo.22086008",
+      "relation": "references",
+      "scheme": "doi"
+    }
+  ],
+  "keywords": [
+    "E10",
+    "etanol",
+    "emisiones TTW",
+    "matriz insumo-producto",
+    "Guatemala",
+    "reproducibilidad"
+  ],
+  "notes": "Versión de preparación local. Añadir el DOI reservado de este suplemento antes de la primera publicación estable."
+}
