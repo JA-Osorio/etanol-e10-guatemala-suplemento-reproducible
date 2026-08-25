@@ -112,7 +112,7 @@ Los metadatos de autoría y versión están en [`CITATION.cff`](CITATION.cff) y 
 3. archive esa versión en Zenodo;
 4. añada el DOI asignado a ambos archivos de metadatos y al distintivo del README.
 
-No se ha inventado un DOI para esta preparación local.
+Esta versión pública de desarrollo todavía no cuenta con DOI propio; no se ha inventado uno.
 
 ## Licencias
 
