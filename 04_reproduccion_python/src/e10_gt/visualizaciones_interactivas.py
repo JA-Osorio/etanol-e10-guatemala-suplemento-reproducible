@@ -31,7 +31,7 @@ _ETIQUETAS_ESCENARIO: Final[dict[str, str]] = {
 _ETIQUETAS_ESTADO: Final[dict[str, str]] = {
     "observed": "Observado",
     "projected_log_linear": "Proyectado (tendencia log-lineal)",
-    "recovered_notebook_output": "Observado (salida recuperada)",
+    "recovered_notebook_output": "Observado",
     "projected_log_linear_2014_2023": (
         "Proyectado (tendencia log-lineal 2014–2023)"
     ),
@@ -43,9 +43,9 @@ _COLORES_ESTADO: Final[dict[str, str]] = {
     "projected_log_linear_2014_2023": "rgba(209, 122, 34, 0.12)",
 }
 _CONTEXTOS_ARTICULO: Final[dict[str, str]] = {
-    "historical_counterfactual_1986_2023": "Contrafactual histórico 1986–2023",
-    "prospective_policy_2024_2030": "Prospectivo de política 2024–2030",
-    "integrated_figure_1986_2030": "Figura integrada 1986–2030",
+    "historical_counterfactual_1986_2023": "Histórico 1986–2023",
+    "prospective_policy_2024_2030": "Prospectivo 2024–2030",
+    "integrated_figure_1986_2030": "Integrado 1986–2030",
 }
 
 
@@ -169,10 +169,7 @@ def _figura_categorias(
         bloque = bloque.loc[categorias]
         valores = bloque[columna_valor].astype(float) * factor_visualizacion
         etiqueta = _etiqueta_escenario(escenario)
-        datos_hover = [
-            [etiqueta, str(naturaleza), unidad]
-            for naturaleza in bloque["naturaleza"]
-        ]
+        datos_hover = [[etiqueta, unidad] for _ in bloque.index]
         figura.add_trace(
             go.Bar(
                 name=etiqueta,
@@ -184,8 +181,8 @@ def _figura_categorias(
                 hovertemplate=(
                     "<b>%{y}</b><br>"
                     "Escenario: %{customdata[0]}<br>"
-                    f"{etiqueta_valor}: %{{x:,.6f}} {unidad}<br>"
-                    "Linaje: %{customdata[1]}<extra></extra>"
+                    f"{etiqueta_valor}: %{{x:,.6f}} {unidad}"
+                    "<extra></extra>"
                 ),
             )
         )
@@ -210,26 +207,25 @@ def crear_figura_demand_pull(datos: TablaEntrada) -> go.Figure:
         factor_visualizacion=1.0,
         unidad="millones de Q de 2013",
         etiqueta_valor="Producción inducida",
-        titulo="Producción inducida por categoría: E5 frente a E10",
+        titulo="Gráfica 5. Producción inducida por categoría: E5 y E10",
         titulo_eje_x="Producción inducida (millones de Q de 2013)",
     )
 
 
 def crear_figura_cost_push(datos: TablaEntrada) -> go.Figure:
-    """Compara la propagación de precios en los tres escenarios económicos."""
+    """Compara la propagación de precios para E5 y E10 comparable."""
 
     return _figura_categorias(
         datos,
         escenarios=(
             "E5_original",
             "E10_misma_metodologia",
-            "E10_penalizacion_lhv",
         ),
         columna_valor="delta_precio_total_promedio_fraccion",
         factor_visualizacion=100.0,
         unidad="%",
         etiqueta_valor="Cambio propagado",
-        titulo="Propagación de precios por categoría y escenario",
+        titulo="Gráfica 4. Propagación de precios por categoría: E5 y E10",
         titulo_eje_x="Cambio promedio propagado (%)",
     )
 
@@ -504,7 +500,7 @@ def crear_figura_emisiones_evitadas(
 def _seleccionar_contexto_articulo(
     datos: TablaEntrada, contexto: str
 ) -> tuple[pd.DataFrame, str, tuple[str, ...]]:
-    """Carga y selecciona una trayectoria anual del cuaderno recuperado."""
+    """Carga y selecciona una trayectoria anual del análisis del artículo."""
 
     tabla, origen = _cargar_tabla(datos)
     columnas = (
@@ -531,7 +527,7 @@ def _seleccionar_contexto_articulo(
     seleccion = tabla.loc[tabla["scenario_context"] == contexto].copy()
     if seleccion.empty:
         raise ValueError(
-            f"No hay filas del cuaderno original para el contexto {contexto!r}"
+            f"No hay filas del análisis para el contexto {contexto!r}"
         )
     if seleccion["year"].duplicated().any():
         raise ValueError(f"Hay años duplicados en el contexto {contexto!r}")
@@ -559,16 +555,12 @@ def _crear_figura_contrafactual_articulo(
             str(escenario),
             float(participacion),
             float(ev_avoided),
-            str(linaje),
-            str(estado_valor),
         ]
-        for estado, escenario, participacion, ev_avoided, linaje, estado_valor in zip(
+        for estado, escenario, participacion, ev_avoided in zip(
             tabla["estado_etiqueta"],
             tabla["scenario_id"],
             tabla["blend_share_applied"],
             tabla["avoided_co2_tonnes"],
-            tabla["source_lineage"],
-            tabla["value_status"],
         )
     ]
 
@@ -583,17 +575,15 @@ def _crear_figura_contrafactual_articulo(
             marker={"size": 5},
             customdata=customdata,
             hovertemplate=(
-                "<b>Cuaderno original recuperado</b><br>"
                 "Año: %{x}<br>"
                 "Serie: Base E0<br>"
                 "Emisiones: %{y:,.0f} t CO₂ TTW<br>"
-                "Estado temporal: %{customdata[0]}<br>"
+                "Estado: %{customdata[0]}<br>"
                 "Contexto: %{customdata[1]}<br>"
                 "Política aplicada: %{customdata[2]} "
                 "(%{customdata[3]:.0%})<br>"
-                "Evitadas frente a E0: %{customdata[4]:,.0f} t CO₂ TTW<br>"
-                "Linaje: %{customdata[5]}<br>"
-                "Estado del valor: %{customdata[6]}<extra></extra>"
+                "Evitadas frente a E0: %{customdata[4]:,.0f} t CO₂ TTW"
+                "<extra></extra>"
             ),
         )
     )
@@ -609,23 +599,20 @@ def _crear_figura_contrafactual_articulo(
             fillcolor="rgba(47, 111, 78, 0.20)",
             customdata=customdata,
             hovertemplate=(
-                "<b>Cuaderno original recuperado</b><br>"
                 "Año: %{x}<br>"
                 "Escenario: %{customdata[2]} "
                 "(%{customdata[3]:.0%})<br>"
                 "Emisiones: %{y:,.0f} t CO₂ TTW<br>"
                 "Evitadas: %{customdata[4]:,.0f} t CO₂ TTW<br>"
-                "Estado temporal: %{customdata[0]}<br>"
-                "Contexto: %{customdata[1]}<br>"
-                "Linaje: %{customdata[5]}<br>"
-                "Estado del valor: %{customdata[6]}<extra></extra>"
+                "Estado: %{customdata[0]}<br>"
+                "Contexto: %{customdata[1]}<extra></extra>"
             ),
         )
     )
     _agregar_sombreado_estado(figura, tabla)
     figura.update_layout(
         title={
-            "text": f"Cuaderno original recuperado · {titulo}",
+            "text": titulo,
             "x": 0.01,
             "xanchor": "left",
         },
@@ -647,10 +634,8 @@ def _crear_figura_contrafactual_articulo(
         meta={
             "origen_datos": origen,
             "columnas_usadas": list(columnas),
-            "fuente": "cuaderno original recuperado",
             "scenario_context": contexto,
             "contexto": contexto_etiqueta,
-            "source_lineage": sorted(set(tabla["source_lineage"].astype(str))),
             "unidad": "t CO₂ TTW",
         },
     )
@@ -658,40 +643,43 @@ def _crear_figura_contrafactual_articulo(
 
 
 def crear_figura_emisiones_articulo_historica(datos: TablaEntrada) -> go.Figure:
-    """Recrea el contrafactual histórico 1986–2023 del cuaderno original."""
+    """Representa el contrafactual histórico 1986–2023 del artículo."""
 
     return _crear_figura_contrafactual_articulo(
         datos,
         contexto="historical_counterfactual_1986_2023",
-        titulo="CO₂ histórico: base E0, E10 y área evitada",
+        titulo="Gráfica 1. Emisiones históricas: base E0, E10 y área evitada",
         etiqueta_escenario="E10 + área evitada",
     )
 
 
 def crear_figura_emisiones_articulo_prospectiva(datos: TablaEntrada) -> go.Figure:
-    """Recrea la política prospectiva: E0 en 2024–2025 y E10 desde 2026."""
+    """Representa la política prospectiva: E0 en 2024–2025 y E10 desde 2026."""
 
     return _crear_figura_contrafactual_articulo(
         datos,
         contexto="prospective_policy_2024_2030",
-        titulo="CO₂ prospectivo: base E0, política E0→E10 y área evitada",
+        titulo=(
+            "Gráfica 3. Emisiones prospectivas: base E0, política E0→E10 "
+            "y área evitada"
+        ),
         etiqueta_escenario="Política E0→E10 + área evitada",
     )
 
 
 def crear_figura_emisiones_articulo_integrada(datos: TablaEntrada) -> go.Figure:
-    """Recrea la figura integrada 1986–2030 con E10 en todo el periodo."""
+    """Representa la trayectoria integrada 1986–2030 con E10 en el periodo."""
 
     return _crear_figura_contrafactual_articulo(
         datos,
         contexto="integrated_figure_1986_2030",
-        titulo="CO₂ integrado: base E0, E10 y área evitada",
+        titulo="Gráfica 6. Emisiones integradas: base E0, E10 y área evitada",
         etiqueta_escenario="E10 + área evitada",
     )
 
 
 def crear_figura_consumo_articulo(datos: TablaEntrada) -> go.Figure:
-    """Recrea el consumo final de gasolina 1986–2030 en millones de galones."""
+    """Representa el consumo final de gasolina en millones de galones."""
 
     tabla, origen = _cargar_tabla(datos)
     columnas = (
@@ -712,14 +700,7 @@ def crear_figura_consumo_articulo(datos: TablaEntrada) -> go.Figure:
         lambda estado: _ETIQUETAS_ESTADO.get(str(estado), str(estado))
     )
     contexto = "Serie de consumo final 1986–2030"
-    customdata = [
-        [estado, contexto, str(linaje), str(estado_valor)]
-        for estado, linaje, estado_valor in zip(
-            tabla["estado_etiqueta"],
-            tabla["source_lineage"],
-            tabla["value_status"],
-        )
-    ]
+    customdata = [[estado, contexto] for estado in tabla["estado_etiqueta"]]
 
     figura = go.Figure()
     figura.add_trace(
@@ -732,23 +713,17 @@ def crear_figura_consumo_articulo(datos: TablaEntrada) -> go.Figure:
             marker={"size": 5},
             customdata=customdata,
             hovertemplate=(
-                "<b>Cuaderno original recuperado</b><br>"
                 "Año: %{x}<br>"
                 "Consumo final: %{y:,.3f} millones de galones EE. UU.<br>"
-                "Estado temporal: %{customdata[0]}<br>"
-                "Contexto: %{customdata[1]}<br>"
-                "Linaje: %{customdata[2]}<br>"
-                "Estado del valor: %{customdata[3]}<extra></extra>"
+                "Estado: %{customdata[0]}<br>"
+                "Contexto: %{customdata[1]}<extra></extra>"
             ),
         )
     )
     _agregar_sombreado_estado(figura, tabla)
     figura.update_layout(
         title={
-            "text": (
-                "Cuaderno original recuperado · Consumo final de gasolina "
-                "(1986–2030)"
-            ),
+            "text": "Gráfica 2. Consumo final de gasolina (1986–2030)",
             "x": 0.01,
             "xanchor": "left",
         },
@@ -773,9 +748,7 @@ def crear_figura_consumo_articulo(datos: TablaEntrada) -> go.Figure:
         meta={
             "origen_datos": origen,
             "columnas_usadas": list(columnas),
-            "fuente": "cuaderno original recuperado",
             "contexto": contexto,
-            "source_lineage": sorted(set(tabla["source_lineage"].astype(str))),
             "unidad": "millones de galones EE. UU.",
         },
     )

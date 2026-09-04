@@ -56,6 +56,8 @@ def test_demand_pull_procede_del_csv_y_compara_e5_e10() -> None:
         assert "millones de Q de 2013" in traza.hovertemplate
     assert figura.layout.meta["origen_datos"] == str(DEMANDA_CSV.resolve())
     assert figura.layout.meta["unidad"] == "millones de Q de 2013"
+    assert figura.layout.title.text.startswith("Gráfica 5.")
+    assert all("Linaje" not in traza.hovertemplate for traza in figura.data)
 
 
 def test_cost_push_procede_del_csv_convierte_fraccion_a_porcentaje() -> None:
@@ -64,7 +66,6 @@ def test_cost_push_procede_del_csv_convierte_fraccion_a_porcentaje() -> None:
     escenarios = (
         "E5_original",
         "E10_misma_metodologia",
-        "E10_penalizacion_lhv",
     )
 
     assert isinstance(figura, go.Figure)
@@ -74,9 +75,10 @@ def test_cost_push_procede_del_csv_convierte_fraccion_a_porcentaje() -> None:
         esperado = 100.0 * fuente["delta_precio_total_promedio_fraccion"]
         assert list(traza.x) == pytest.approx(esperado.tolist())
         assert "%" in traza.hovertemplate
-        assert "Linaje" in traza.hovertemplate
+        assert "Linaje" not in traza.hovertemplate
     assert figura.layout.meta["origen_datos"] == str(PRECIOS_CSV.resolve())
     assert figura.layout.meta["unidad"] == "%"
+    assert figura.layout.title.text.startswith("Gráfica 4.")
 
 
 def test_emisiones_eia_usa_e10_y_muestra_estado_y_linaje() -> None:
@@ -126,24 +128,27 @@ def test_emisiones_evitadas_anuales_y_acumuladas_salen_del_csv() -> None:
 
 
 @pytest.mark.parametrize(
-    ("constructor", "contexto"),
+    ("constructor", "contexto", "numero_grafica"),
     (
         (
             crear_figura_emisiones_articulo_historica,
             "historical_counterfactual_1986_2023",
+            1,
         ),
         (
             crear_figura_emisiones_articulo_prospectiva,
             "prospective_policy_2024_2030",
+            3,
         ),
         (
             crear_figura_emisiones_articulo_integrada,
             "integrated_figure_1986_2030",
+            6,
         ),
     ),
 )
 def test_figuras_contrafactuales_articulo_salen_de_su_contexto_csv(
-    constructor, contexto: str
+    constructor, contexto: str, numero_grafica: int
 ) -> None:
     tabla = pd.read_csv(CONTRAFACTUAL_ARTICULO_CSV)
     fuente = (
@@ -173,20 +178,22 @@ def test_figuras_contrafactuales_articulo_salen_de_su_contexto_csv(
     )
     assert len(figura.layout.shapes) == fuente["data_status"].nunique()
     for traza in figura.data:
-        assert "Cuaderno original recuperado" in traza.hovertemplate
+        assert "Cuaderno original recuperado" not in traza.hovertemplate
         assert "t CO₂ TTW" in traza.hovertemplate
-        assert "Estado temporal" in traza.hovertemplate
+        assert "Estado" in traza.hovertemplate
         assert "Contexto" in traza.hovertemplate
-        assert "Linaje" in traza.hovertemplate
-    assert "Cuaderno original recuperado" in figura.layout.title.text
+        assert "Linaje" not in traza.hovertemplate
+        assert "Estado del valor" not in traza.hovertemplate
+    assert figura.layout.title.text.startswith(f"Gráfica {numero_grafica}.")
+    assert "Cuaderno original recuperado" not in figura.layout.title.text
     assert figura.layout.meta["scenario_context"] == contexto
-    assert figura.layout.meta["source_lineage"] == ["article_notebook_recovered"]
+    assert "source_lineage" not in figura.layout.meta
     assert figura.layout.meta["origen_datos"] == str(
         CONTRAFACTUAL_ARTICULO_CSV.resolve()
     )
 
 
-def test_consumo_articulo_usa_los_45_valores_del_csv_recuperado() -> None:
+def test_consumo_articulo_usa_los_45_valores_del_csv() -> None:
     fuente = pd.read_csv(SERIE_ARTICULO_CSV).sort_values("year").reset_index(drop=True)
 
     figura = crear_figura_consumo_articulo(SERIE_ARTICULO_CSV)
@@ -198,12 +205,14 @@ def test_consumo_articulo_usa_los_45_valores_del_csv_recuperado() -> None:
         fuente["million_us_gallons"].tolist()
     )
     assert len(figura.layout.shapes) == fuente["data_status"].nunique()
-    assert "Cuaderno original recuperado" in figura.data[0].hovertemplate
+    assert "Cuaderno original recuperado" not in figura.data[0].hovertemplate
     assert "millones de galones EE. UU." in figura.data[0].hovertemplate
-    assert "Estado temporal" in figura.data[0].hovertemplate
+    assert "Estado" in figura.data[0].hovertemplate
     assert "Contexto" in figura.data[0].hovertemplate
-    assert "Linaje" in figura.data[0].hovertemplate
-    assert figura.layout.meta["source_lineage"] == ["article_notebook_recovered"]
+    assert "Linaje" not in figura.data[0].hovertemplate
+    assert "Estado del valor" not in figura.data[0].hovertemplate
+    assert figura.layout.title.text.startswith("Gráfica 2.")
+    assert "source_lineage" not in figura.layout.meta
     assert figura.layout.meta["origen_datos"] == str(SERIE_ARTICULO_CSV.resolve())
 
 
