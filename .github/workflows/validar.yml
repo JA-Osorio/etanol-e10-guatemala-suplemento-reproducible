@@ -19,4 +19,4 @@ jobs:
       - name: Ejecutar pruebas
         run: pytest -q
       - name: Verificar que las salidas versionadas son reproducibles
-        run: git diff --exit-code
+        run: python 04_reproduccion_python/verificar_salidas_versionadas.py

@@ -133,6 +133,14 @@ La ejecución debe regenerar las tablas de `06_resultados/`, los controles de
 interna y reproducción computacional del alcance declarado; no convierte un
 supuesto en una observación ni elimina las limitaciones anteriores.
 
+La integración continua exige identidad byte a byte para código, insumos,
+emisiones, documentos y estructura de las tablas. En una lista cerrada de
+salidas económicas producidas con álgebra lineal compara los números con
+`rtol=1e-13` y `atol=1e-15`, porque distintas implementaciones BLAS pueden
+diferir unos pocos ULP. No se redondean ni se sustituyen por cero los valores
+versionados. El manifiesto se vuelve a comprobar contra el tamaño y el SHA-256
+de cada archivo producido en esa ejecución.
+
 ## Cuadernos: recuperación y ejecución
 
 La versión canónica y revisable del cuaderno se conserva en
