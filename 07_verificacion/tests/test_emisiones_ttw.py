@@ -301,7 +301,18 @@ class EmissionsTtwTests(unittest.TestCase):
             for row in result["annual_energy"]
             if row["data_status"] == "projected_log_linear"
         }
-        self.assertEqual(projected, result["config"]["golden_forecast_energy_tj"])
+        expected_projection = result["config"]["golden_forecast_energy_tj"]
+        self.assertEqual(set(projected), set(expected_projection))
+        for year, value in projected.items():
+            self.assertTrue(
+                math.isclose(
+                    value,
+                    float(expected_projection[year]),
+                    rel_tol=0.0,
+                    abs_tol=1e-9,
+                ),
+                msg=f"Proyección EIA fuera de tolerancia en {year}",
+            )
 
     def test_diagnostics_preserve_separate_lineages(self) -> None:
         with tempfile.TemporaryDirectory(prefix="e10-ttw-diagnostics-") as temp_dir:

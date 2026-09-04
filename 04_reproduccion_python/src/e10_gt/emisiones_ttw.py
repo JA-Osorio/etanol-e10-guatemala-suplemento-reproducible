@@ -175,19 +175,22 @@ def fit_log_linear(
     center_year = fit_start
     x_values = [int(row["year"]) - center_year for row in selected]
     y_values = [math.log(float(row["energy_tj"])) for row in selected]
-    x_mean = sum(x_values) / len(x_values)
-    y_mean = sum(y_values) / len(y_values)
-    denominator = sum((value - x_mean) ** 2 for value in x_values)
+    # ``sum`` cambió su algoritmo para flotantes en Python 3.12. Usar
+    # ``math.fsum`` hace que el ajuste y sus salidas serializadas sean estables
+    # entre las versiones de Python admitidas por el proyecto.
+    x_mean = math.fsum(x_values) / len(x_values)
+    y_mean = math.fsum(y_values) / len(y_values)
+    denominator = math.fsum((value - x_mean) ** 2 for value in x_values)
     if denominator == 0:
         raise ValueError("La ventana de ajuste no tiene variación temporal")
-    slope = sum(
+    slope = math.fsum(
         (x - x_mean) * (y - y_mean) for x, y in zip(x_values, y_values)
     ) / denominator
     intercept = y_mean - slope * x_mean
     fitted = [intercept + slope * value for value in x_values]
     residuals = [actual - estimate for actual, estimate in zip(y_values, fitted)]
-    ss_residual = sum(value**2 for value in residuals)
-    ss_total = sum((value - y_mean) ** 2 for value in y_values)
+    ss_residual = math.fsum(value**2 for value in residuals)
+    ss_total = math.fsum((value - y_mean) ** 2 for value in y_values)
 
     return LogLinearFit(
         fit_start_year=fit_start,
@@ -445,9 +448,15 @@ def build_recovered_article_counterfactual(
     )
     summary_rows: list[dict[str, Any]] = []
     for period_id, selected, coverage, excluded in summary_specs:
-        reference = sum(float(row["reference_co2_tonnes"]) for row in selected)
-        scenario_value = sum(float(row["scenario_co2_tonnes"]) for row in selected)
-        avoided = sum(float(row["avoided_co2_tonnes"]) for row in selected)
+        reference = math.fsum(
+            float(row["reference_co2_tonnes"]) for row in selected
+        )
+        scenario_value = math.fsum(
+            float(row["scenario_co2_tonnes"]) for row in selected
+        )
+        avoided = math.fsum(
+            float(row["avoided_co2_tonnes"]) for row in selected
+        )
         summary_rows.append(
             {
                 "period_id": period_id,
@@ -921,7 +930,7 @@ def build_recovered_article_checks(
         if row["scenario_context"] == "integrated_figure_1986_2030"
     ]
     integrated_totals = {
-        field: sum(float(row[field]) for row in integrated_rows)
+        field: math.fsum(float(row[field]) for row in integrated_rows)
         for field in (
             "reference_co2_tonnes",
             "scenario_co2_tonnes",
@@ -1163,13 +1172,13 @@ def summarize_open_update(
                     "scenario_id": scenario_id,
                     "blend_share": selected[0]["blend_share"],
                     "n_years": len(selected),
-                    "reference_co2_tonnes": sum(
+                    "reference_co2_tonnes": math.fsum(
                         float(row["reference_co2_tonnes"]) for row in selected
                     ),
-                    "scenario_co2_tonnes": sum(
+                    "scenario_co2_tonnes": math.fsum(
                         float(row["scenario_co2_tonnes"]) for row in selected
                     ),
-                    "avoided_co2_tonnes": sum(
+                    "avoided_co2_tonnes": math.fsum(
                         float(row["avoided_co2_tonnes"]) for row in selected
                     ),
                     "ttw_reduction_fraction": selected[0][
@@ -1544,7 +1553,7 @@ def build_checks(
             summary_residuals.append(
                 abs(
                     float(summary_row[field])
-                    - sum(float(row[field]) for row in selected)
+                    - math.fsum(float(row[field]) for row in selected)
                 )
             )
     add_boolean(
