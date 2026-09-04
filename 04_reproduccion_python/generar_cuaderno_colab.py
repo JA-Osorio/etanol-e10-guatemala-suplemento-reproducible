@@ -73,7 +73,7 @@ CELLS = [
 
         REPO_URL = "https://github.com/JA-Osorio/etanol-e10-guatemala-suplemento-reproducible.git"
         MIP_URL = "https://github.com/JA-Osorio/mip-guatemala-2013-reproducible.git"
-        DEFAULT_REF_REPO = "revision-e5-e10-trazabilidad"
+        DEFAULT_REF_REPO = "48bc80699d3aa2b44f942fdfe77febde75febf36"
         REF_REPO = os.environ.get("REF_REPO", DEFAULT_REF_REPO).strip()
         MIP_COMMIT = "5056c15fdeb4527bbee47c9e53d1c3d8dcee3ae3"
 
