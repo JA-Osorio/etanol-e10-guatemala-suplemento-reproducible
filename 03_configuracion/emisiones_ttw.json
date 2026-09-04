@@ -1,7 +1,15 @@
 {
   "source_csv": "01_datos/insumos_publicables/eia_motor_gasolina_gtm_1986_2024.csv",
   "source_url": "https://www.eia.gov/opendata/bulkfiles.php",
+  "source_sha256": "ea40d27e53c0a9338dbb280cdc1dd807eafed82b1fc962718433ce8199fa7010",
   "eia_series_id": "INTL.62-2-GTM-TJ.A",
+  "source_metadata_expected": {
+    "series_name": "Motor gasoline consumption, Guatemala, Annual",
+    "units": "terajoules",
+    "source": "EIA, U.S. Energy Information Administration",
+    "last_updated": "2026-07-02T16:19:06-04:00"
+  },
+  "open_update_lineage": "EIA_open_data_separate_lineage",
   "observed_start_year": 1986,
   "observed_end_year": 2024,
   "forecast_start_year": 2025,
@@ -10,11 +18,172 @@
   "fit_end_year": 2024,
   "co2_factor_tonnes_per_tj": 69.3,
   "ethanol_to_gasoline_lhv_ratio": 0.659375,
-  "lhv_ratio_provenance": "reconstructed_from_published_e10_reduction_to_preserve_exact_controls; printed_heating_values_were_rounded",
+  "lhv_ratio_provenance": "explicit_ratio_of_recovered_notebook_parameters_21.1_MJ_per_L_over_32.0_MJ_per_L",
+  "rho_parameter_provenance": {
+    "symbol": "rho",
+    "value": 0.659375,
+    "ethanol_lhv_mj_per_liter": 21.1,
+    "gasoline_lhv_mj_per_liter": 32.0,
+    "e10_blend_share": 0.1,
+    "derived_e10_reduction_fraction": 0.0682626981559366,
+    "equation": "rho = LHV_ethanol / LHV_gasoline = 21.1 / 32.0",
+    "status": "explicit_notebook_parameter_ratio",
+    "independent_empirical_input": false
+  },
+  "published_aggregate_lineage": {
+    "calculation_scope": "aggregate_arithmetic_reconciliation_only",
+    "annual_reproduction_status": "primary_workbook_copy_recovered_and_computationally_verified",
+    "reported_annual_source": "manuscript_reports_OLADE_sieLAC_but_workbook_provenance_not_independently_verified",
+    "original_annual_file_in_repository": false,
+    "annual_recovered_input_in_repository": true,
+    "role": "golden_control_not_calculation_source",
+    "rounding_method": "decimal_round_half_up_to_integer_tonnes",
+    "excluded_gap_years": [2024, 2025]
+  },
+  "article_recovered_lineage": {
+    "source_csv": "01_datos/insumos_publicables/contrafactual_articulo_recuperado_1986_2023.csv",
+    "source_csv_sha256": "e6a1fd25f0326f29a58869624ee574d604d75c51178ea6d44937070dddbf2d9f",
+    "value_status": "recovered_from_embedded_notebook_plotly_output",
+    "primary_notebook": {
+      "title": "cuaderno_principal_privado",
+      "drive_file_id": "omitido_en_rama_publica",
+      "original_sha256": "omitido_en_rama_publica",
+      "publicacion_identificadores": "sanitizada",
+      "valid_cells_zero_based": "0-15",
+      "stored_in_repository": false
+    },
+    "corroborating_notebook": {
+      "title": "cuaderno_corroborante_privado",
+      "drive_file_id": "omitido_en_rama_publica",
+      "original_sha256": "omitido_en_rama_publica",
+      "publicacion_identificadores": "sanitizada",
+      "valid_cells_zero_based": "0,3-17",
+      "warning": "cell_1_displays_an_undefined_object; cells_after_17_are_failed_refactor_with_dummy_data",
+      "stored_in_repository": false
+    },
+    "expected_workbook": {
+      "filename": "identificador_omitido_en_rama_publica",
+      "sheet": "1.CONSUMO FINAL",
+      "columns": ["No", "año", "BTU"],
+      "recovery_status": "recovered_external_copy_verified",
+      "identifier_status": "omitted_in_public_review_branch",
+      "stored_in_repository": false,
+      "redistribution_allowed": false,
+      "source_provenance_status": "source_provenance_and_license_pending",
+      "row_count": 38,
+      "year_start": 1986,
+      "year_end": 2023,
+      "cross_validation": {
+        "serialization_significant_digits": 15,
+        "matched_btu_rows": 38,
+        "matched_reference_co2_rows": 38,
+        "matched_million_us_gallons_rows": 38,
+        "max_absolute_btu_difference": 0.05078125,
+        "max_relative_btu_difference": 3.946560658289442e-15,
+        "max_absolute_reference_co2_tonnes_difference": 4.656612873077393e-09,
+        "max_absolute_million_us_gallons_difference": 5.684341886080801e-13,
+        "interpretation": "all_38_rows_match_after_canonical_15_significant_digit_serialization"
+      }
+    },
+    "observed_start_year": 1986,
+    "observed_end_year": 2023,
+    "fit_start_year": 2014,
+    "fit_end_year": 2023,
+    "original_fit_equation": "ln(liters) = b0 + b1 * year",
+    "implementation_fit_equation": "ln(energy_tj) = intercept_at_center + slope_per_year * (year - 2014)",
+    "fit_equivalence": "liters_and_energy_tj_differ_only_by_a_positive_constant_scale",
+    "forecast_start_year": 2024,
+    "forecast_end_year": 2030,
+    "policy_start_year": 2026,
+    "btu_to_mj": 0.001055056,
+    "gasoline_lhv_mj_per_liter": 32.0,
+    "ethanol_lhv_mj_per_liter": 21.1,
+    "liter_to_us_gallon": 0.2641720524,
+    "e10_volumetric_share": 0.1,
+    "co2_factor_tonnes_per_tj": 69.3,
+    "golden_log_linear_fit_recalculated": {
+      "fit_start_year": 2014,
+      "fit_end_year": 2023,
+      "n_observations": 10,
+      "center_year": 2014,
+      "intercept_at_center": 10.893958689832722,
+      "slope_per_year": 0.05725550520597046,
+      "annual_growth_rate": 0.058926337025396514,
+      "r_squared_log_scale": 0.9031155140965328,
+      "rmse_log_scale": 0.053864135445215316
+    },
+    "golden_historical_notebook_totals": {
+      "reference_co2_tonnes": 104318087.17351946,
+      "scenario_co2_tonnes": 97197053.07658882,
+      "avoided_co2_tonnes": 7121034.096930638
+    },
+    "golden_integrated_figure_notebook_totals": {
+      "reference_co2_tonnes": 159667840.79531884,
+      "scenario_co2_tonnes": 148768483.17389786,
+      "avoided_co2_tonnes": 10899357.621420981
+    },
+    "golden_integrated_minus_reported_disjoint_avoided_co2_tonnes": 929824.8283222113,
+    "golden_projection_notebook_outputs": {
+      "2024": {
+        "reference_co2_tonnes": 6615716.39405447,
+        "scenario_co2_tonnes_policy_context": 6615716.39405447,
+        "million_us_gallons": 788.0985650765227
+      },
+      "2025": {
+        "reference_co2_tonnes": 7005556.32795488,
+        "scenario_co2_tonnes_policy_context": 7005556.32795488,
+        "million_us_gallons": 834.538326731443
+      },
+      "2026": {
+        "reference_co2_tonnes": 7418368.101186364,
+        "scenario_co2_tonnes_policy_context": 6911970.278685451,
+        "million_us_gallons": 883.7146134330325
+      },
+      "2027": {
+        "reference_co2_tonnes": 7855505.360095338,
+        "scenario_co2_tonnes_policy_context": 7319267.368836809,
+        "million_us_gallons": 935.7886785784574
+      },
+      "2028": {
+        "reference_co2_tonnes": 8318401.516449025,
+        "scenario_co2_tonnes_policy_context": 7750564.984591779,
+        "million_us_gallons": 990.93127763691
+      },
+      "2029": {
+        "reference_co2_tonnes": 8808574.447719889,
+        "scenario_co2_tonnes_policy_context": 8207277.389011092,
+        "million_us_gallons": 1049.3232280719517
+      },
+      "2030": {
+        "reference_co2_tonnes": 9327631.474339414,
+        "scenario_co2_tonnes_policy_context": 8690902.18249677,
+        "million_us_gallons": 1111.156002257883
+      }
+    }
+  },
   "blend_shares": {
     "E10": 0.1,
     "E15": 0.15,
     "E20": 0.2
+  },
+  "golden_log_linear_fit": {
+    "fit_start_year": 2015,
+    "fit_end_year": 2024,
+    "n_observations": 10,
+    "center_year": 2015,
+    "intercept_at_center": 11.09129381037133,
+    "slope_per_year": 0.04491590414913126,
+    "annual_growth_rate": 0.04593989700451506,
+    "r_squared_log_scale": 0.9214271219208949,
+    "rmse_log_scale": 0.0376732385538687
+  },
+  "golden_forecast_energy_tj": {
+    "2025": 102790.9765975941,
+    "2026": 107513.18347548097,
+    "2027": 112452.32805097218,
+    "2028": 117618.37641955166,
+    "2029": 123021.75251810423,
+    "2030": 128673.35915810075
   },
   "published_controls": [
     {

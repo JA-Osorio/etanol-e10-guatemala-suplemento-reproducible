@@ -9,18 +9,9 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
 
-TEXT_SUFFIXES = {
-    ".csv",
-    ".json",
-    ".md",
-    ".py",
-    ".toml",
-    ".txt",
-    ".yml",
-    ".yaml",
-    ".cff",
-    ".ipynb",
-}
+def _read_json(path: Path) -> dict[str, Any]:
+    with path.open(encoding="utf-8") as handle:
+        return json.load(handle)
 
 
 def _sha256(path: Path) -> str:
@@ -46,26 +37,58 @@ def _segment_hash(value: str) -> str:
 
 
 def verificar_alcance(repo_root: str | Path) -> dict[str, Any]:
-    """Impide contenido textual o nombres asociados al escenario excluido."""
+    """Comprueba que el linaje histórico y el prospectivo estén separados.
+
+    El escenario E5 ya no se excluye: es necesario para reproducir el cálculo
+    que alimentó el manuscrito. La salvaguarda correcta es impedir que ese E5
+    histórico aparezca como escenario de política vigente o que el E10
+    recalculado sea presentado como una reproducción literal.
+    """
 
     root = Path(repo_root).resolve()
-    needle = chr(101) + chr(53)
-    hits: list[str] = []
-    for path in root.rglob("*"):
-        if not path.is_file() or ".git" in path.parts or "__pycache__" in path.parts:
-            continue
-        relative = path.relative_to(root).as_posix()
-        if needle in relative.casefold():
-            hits.append(relative)
-            continue
-        if path.suffix.lower() not in TEXT_SUFFIXES:
-            continue
-        text = path.read_text(encoding="utf-8", errors="ignore")
-        if needle in text.casefold():
-            hits.append(relative)
-    if hits:
-        raise AssertionError("Se detectó contenido fuera del alcance: " + ", ".join(hits))
-    return {"archivos_fuera_alcance": 0, "estado": "PASS"}
+    historical = _read_json(
+        root / "03_configuracion" / "economia_articulo.json"
+    )
+    policy = _read_json(
+        root / "03_configuracion" / "escenarios_economicos.json"
+    )
+
+    scenarios = {
+        str(scenario["id"]): scenario for scenario in historical["escenarios"]
+    }
+    historic_mix = float(scenarios["E5_original"]["mezcla_etanol"])
+    corrected_mix = float(
+        scenarios["E10_misma_metodologia"]["mezcla_etanol"]
+    )
+    policy_blends = {
+        name: float(value) for name, value in policy["mezclas"].items()
+    }
+    checks = {
+        "e5_historico_es_cinco_por_ciento": historic_mix == 0.05,
+        "e5_historico_es_reproduccion_forense": (
+            scenarios["E5_original"]["naturaleza"]
+            == "reproduccion_forense"
+        ),
+        "e10_corregido_es_diez_por_ciento": corrected_mix == 0.10,
+        "e10_corregido_es_recalculo_comparable": (
+            scenarios["E10_misma_metodologia"]["naturaleza"]
+            == "recalculo_comparable"
+        ),
+        "e5_no_es_escenario_politica": "E5" not in policy_blends,
+        "politica_inicia_en_e10": min(policy_blends.values()) >= 0.10,
+    }
+    if not all(checks.values()):
+        failed = [name for name, passed in checks.items() if not passed]
+        raise AssertionError(
+            "Falló la separación de linajes económicos: " + ", ".join(failed)
+        )
+    return {
+        "economia_historica": "E5_original",
+        "economia_corregida": "E10_misma_metodologia",
+        "escenarios_politica": list(policy_blends),
+        "controles": checks,
+        "estado": "PASS",
+    }
 
 
 def _write_csv(path: Path, rows: Sequence[Mapping[str, Any]]) -> None:
@@ -110,6 +133,7 @@ def escribir_resumen_global(
     repo_root: str | Path,
     *,
     emisiones: Mapping[str, Any],
+    economia_articulo: Mapping[str, Any],
     economia: Mapping[str, Any],
     transiciones: Mapping[str, Any],
     figuras: Iterable[Path],
@@ -118,16 +142,43 @@ def escribir_resumen_global(
 
     root = Path(repo_root).resolve()
     scope = verificar_alcance(root)
+    control_groups = {
+        "emisiones": [row["status"] == "PASS" for row in emisiones["checks"]],
+        "economia_articulo": [
+            bool(row["cumple"]) for row in economia_articulo["controles"]
+        ],
+        "economia_reconstruccion_actual": [
+            bool(row["cumple"]) for row in economia["controles"]
+        ],
+        "transiciones": [
+            bool(row["cumple"]) for row in transiciones["controles"]
+        ],
+    }
+    failed_groups = [
+        name for name, checks in control_groups.items() if not checks or not all(checks)
+    ]
+    if failed_groups:
+        raise AssertionError(
+            "Fallaron controles del pipeline: " + ", ".join(failed_groups)
+        )
     summary = {
-        "version": "0.1.0",
-        "escenario_base": "E10",
+        "version": "0.2.0",
+        "escenario_emisiones": "E10",
+        "escenario_economico_historico": "E5_original",
+        "escenario_economico_corregido": "E10_misma_metodologia",
         "mezclas_superiores": ["E15", "E20"],
         "abastecimiento_central": "importado",
         "emisiones_controles": {
             "total": len(emisiones["checks"]),
             "superados": sum(row["status"] == "PASS" for row in emisiones["checks"]),
         },
-        "economia_controles": {
+        "economia_articulo_controles": {
+            "total": len(economia_articulo["controles"]),
+            "superados": sum(
+                bool(row["cumple"]) for row in economia_articulo["controles"]
+            ),
+        },
+        "economia_reconstruccion_actual_controles": {
             "total": len(economia["controles"]),
             "superados": sum(bool(row["cumple"]) for row in economia["controles"]),
         },

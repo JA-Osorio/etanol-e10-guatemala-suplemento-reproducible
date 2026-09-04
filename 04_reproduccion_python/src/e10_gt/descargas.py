@@ -55,7 +55,7 @@ def _download(url: str, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     request = urllib.request.Request(
         url,
-        headers={"User-Agent": "e10-gt-suplemento/0.1.0"},
+        headers={"User-Agent": "e10-gt-suplemento/0.2.0"},
     )
     with urllib.request.urlopen(request, timeout=90) as response:
         with tempfile.NamedTemporaryFile(

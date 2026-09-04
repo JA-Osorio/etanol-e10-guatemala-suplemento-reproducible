@@ -2,86 +2,149 @@
 
 ## Alcance
 
-El módulo calcula CO2 de escape (*Tank-to-Wheel*, TTW) para E10, E15 y
-E20. No es un análisis de ciclo de vida. El CO2 biogénico procedente del
-alcohol carburante queda fuera del total del sector Energía, como partida
-informativa, y se mantiene constante el servicio energético del vehículo.
+El módulo calcula CO2 de escape (*Tank-to-Wheel*, TTW); no es un análisis de
+ciclo de vida. Mantiene tres linajes separados: reconstrucción anual del
+artículo, controles agregados publicados y actualización abierta EIA. Ningún
+linaje se usa para calibrar otro.
 
-## Identidad física
+## Matemática común
 
-La referencia de gasolina se calcula con un factor de 69.3 tCO2/TJ. Para una
-participación volumétrica de alcohol `s` y una razón de poderes caloríficos
-inferiores `q = 0.659375`:
+El cuaderno original fija `LHV_g = 32.0 MJ/L`, `LHV_e = 21.1 MJ/L`, mezcla
+`s = 0.10` y `EF = 69.3 tCO2/TJ`. Por tanto, la razón no es una calibración
+forense de los resultados publicados, sino un cociente explícito de parámetros:
 
 ```text
-r(s) = (1 - s) + s*q
-factor_fosil(s) = (1 - s) / r(s)
-reduccion_ttw(s) = 1 - factor_fosil(s)
+rho  = LHV_e / LHV_g = 21.1 / 32.0 = 0.659375
+r(s) = (1 - s) + s*rho
+F(s) = (1 - s) / r(s)
+d(s) = 1 - F(s)
+
+C0 = energia_TJ * EF
+Cs = C0 * F(s)
+A  = C0 - Cs = C0 * d(s)
 ```
 
-Las emisiones del escenario son las emisiones de referencia multiplicadas
-por `factor_fosil(s)`. Para E10, la reducción resultante es
-0.0682626981559366, aproximadamente 6.83%.
+Para E10, `d(0.10) = 0.0682626981559366`, aproximadamente 6.83%. Todos los
+resultados verifican las identidades `r`, `F`, `d` y el balance `C0 = Cs + A`.
 
-La razón `0.659375` se reconstruyó a partir del porcentaje E10 publicado para
-reproducir exactamente sus controles. Los poderes caloríficos impresos en el
-texto estaban redondeados y, si se dividieran literalmente, producirían una
-diferencia numérica pequeña pero evitable. La configuración registra esta
-decisión de trazabilidad.
+## Linaje 1: reconstrucción anual del artículo
 
-## Dos linajes separados
+El artefacto principal y una copia corroborante se recuperaron de Google Drive.
+Sus nombres, IDs, huellas y demás identificadores se omiten en esta rama
+pública sanitizada; permanecen únicamente en el registro local de auditoría no
+publicable. El principal contiene 16 celdas válidas. En la copia, la celda 0 y
+las celdas 3–17 conservan la evidencia útil; la celda 1 intenta mostrar un
+objeto aún no definido y las posteriores a la 17 pertenecen a un refactor
+fallido con datos de demostración.
 
-### Reproducción publicada
+El libro esperado por ambos cuadernos tiene una hoja `1.CONSUMO FINAL` con
+columnas `No`, `año` y `BTU`. Se recuperó una copia externa con 38 observaciones
+continuas de 1986–2023, y la limpieza original no elimina ni reordena filas. El
+nombre y la huella del archivo se omiten en esta rama pública. No se incorpora
+al repositorio porque no documenta su URL, metodología ni licencia.
 
-`06_resultados/emisiones/reproduccion_publicada.csv` parte de los totales
-agregados de referencia que sustentan los resultados publicados. Aplica la
-identidad anterior y reproduce, con redondeo decimal convencional, únicamente
-los controles E10 de 1986–2023 y 2026–2030.
+Antes de disponer de esa copia, se extrajeron los 38 valores anuales 1986–2023
+incrustados en las salidas Plotly. El insumo derivado forense es
+`01_datos/insumos_publicables/contrafactual_articulo_recuperado_1986_2023.csv`;
+su SHA-256 está fijado en la configuración. La comparación posterior confirmó
+38/38 coincidencias para BTU, CO2 de referencia y volumen al serializar con 15
+cifras significativas. Los residuos binarios máximos son `0.05078125 BTU`,
+`4.66e-9 tCO2` y `5.68e-13` millones de galones, sin efecto material sobre los
+resultados.
 
-Los cálculos E15 y E20 sobre esos mismos agregados se guardan, claramente
-separados, en
-`06_resultados/emisiones/extensiones_mezclas_superiores.csv`. Son escenarios
-derivados y no resultados publicados.
+La extracción también es reproducible cuando se dispone de una copia local del
+cuaderno privado:
 
-### Actualización EIA
+```bash
+python 04_reproduccion_python/extraer_contrafactual_cuaderno.py \
+  --cuaderno /ruta/cuaderno_original.ipynb
+```
 
-`01_datos/insumos_publicables/eia_motor_gasolina_gtm_1986_2024.csv` conserva
-la serie `INTL.62-2-GTM-TJ.A`, consumo anual de gasolina de motor en Guatemala,
-extraída del archivo internacional masivo de la U.S. Energy Information
-Administration. La fuente oficial y el identificador están declarados en
-`03_configuracion/emisiones_ttw.json`.
+La copia externa del libro puede volver a auditarse sin redistribuirla:
 
-Las observaciones cubren 1986–2024. La proyección 2025–2030 es una regresión
-lineal por mínimos cuadrados de `ln(energia_tj)` contra el año, ajustada en
-2015–2024. Se retransforma con la función exponencial sin corrección de
-*smearing*: el objetivo es extrapolar la mediana condicional de la tendencia
-log-lineal. La ventana puede cambiarse en la configuración sin editar código.
+```bash
+python 04_reproduccion_python/verificar_series_ccse.py \
+  --workbook "/ruta/libro_primario.xlsx"
+```
 
-La actualización EIA no se calibra para igualar los agregados publicados. Las
-diferencias se informan en
-`06_resultados/emisiones/comparacion_linajes.csv`; no constituyen por sí mismas
-un error de reproducción porque los insumos de origen son distintos.
+Este control público valida hoja, columnas, secuencia, años, dominio de BTU,
+conversiones, el `np.polyfit` literal del cuaderno, proyecciones y agregados. La
+identidad privada del archivo puede cotejarse únicamente en una auditoría local
+autorizada.
 
-## Archivos derivados
+La utilidad localiza las trazas por nombre y cobertura, valida las cuatro
+figuras y sus reglas E0/E10 y regenera el CSV. Además aplica controles
+semánticos sobre los arreglos `{name, x, y}`, independientes de la posición de
+las celdas y del estilo de Plotly. El `.ipynb` privado no es necesario para
+ejecutar el pipeline público ni sus pruebas.
 
-- `01_datos/procesados/energia_gasolina_observada_y_proyectada_1986_2030.csv`:
-  energía anual observada y proyectada.
-- `06_resultados/emisiones/actualizacion_eia_anual.csv`: emisiones anuales por
-  mezcla.
-- `06_resultados/emisiones/actualizacion_eia_resumen.csv`: agregados por
-  período.
-- `06_resultados/emisiones/extensiones_mezclas_superiores.csv`: extensiones
-  físicas derivadas de los agregados, fuera de la reproducción publicada.
-- `07_verificacion/controles_emisiones_ttw.csv`: nueve controles automáticos.
-- `07_verificacion/diagnostico_proyeccion_emisiones.json`: ventana, coeficientes
-  y bondad de ajuste de la proyección.
+El *round-trip* usado para recuperar y comprobar los datos es:
 
-## Actualización
+```text
+energia_MJ = BTU * 0.001055056
+energia_TJ = energia_MJ / 1e6
+C0         = energia_TJ * 69.3
+litros     = energia_MJ / 32.0
+millones_gal_US = litros * 0.2641720524 / 1e6
+```
 
-Al publicarse una revisión de la serie EIA:
+La proyección 2024–2030 reproduce el código original: OLS de `ln(litros)`
+contra el año sobre 2014–2023 y retransformación `exp()` sin corrección de
+*smearing*. La implementación usa la forma centrada equivalente sobre
+`ln(energia_TJ)`: litros y energía difieren solo por un factor positivo
+constante, por lo que la pendiente y las proyecciones transformadas no cambian.
+Las siete proyecciones se contrastan contra las salidas Plotly incrustadas, no
+contra la serie EIA.
 
-1. Extraer nuevamente solo `INTL.62-2-GTM-TJ.A` del archivo masivo oficial.
-2. Sustituir el CSV fuente conservando nombres, unidades y metadatos.
-3. Actualizar los años observado, de ajuste y de proyección en la configuración.
-4. Ejecutar el flujo completo.
-5. Publicar resultados únicamente si los nueve controles terminan en `PASS`.
+Hay tres contextos explícitos en `contrafactual_articulo_anual.csv`:
+
+- `historical_counterfactual_1986_2023`: E10 hipotético en los 38 años;
+- `prospective_policy_2024_2030`: E0 en 2024–2025 y E10 desde 2026;
+- `integrated_figure_1986_2030`: E10 en los 45 años, tal como se dibujó la
+  figura integrada original.
+
+El resumen publicado es la unión disjunta `1986–2023 + 2026–2030`; no es una
+suma continua 1986–2030. Los años 2024–2025 quedan fuera del total y esta
+diferencia frente a la figura integrada se controla de manera explícita. La
+figura integrada evita `10,899,357.621421 tCO2`; son `929,824.828322 tCO2` más
+que la suma disjunta publicada porque allí también se aplica E10 en 2024–2025.
+
+## Linaje 2: agregados publicados como controles golden
+
+`06_resultados/emisiones/reproduccion_publicada.csv` conserva por compatibilidad
+los totales enteros del manuscrito, pero ya no son la fuente del cálculo. Su
+papel es comprobar la coherencia aritmética interna del agregado: parte del
+`C0` entero publicado, recalcula `C10` y `A` con `ROUND_HALF_UP` y los contrasta
+con las otras dos filas publicadas. De forma independiente, los controles
+`article_annual_*` redondean las sumas de la reconstrucción anual y cotejan sus
+tres valores `C0`, `C10` y `A` contra el manuscrito. Así, los agregados no son
+fuente de la reconstrucción anual ni la reconstrucción altera los controles
+publicados. E15 y E20 en
+`extensiones_mezclas_superiores.csv` son extensiones derivadas no publicadas.
+
+## Linaje 3: actualización EIA independiente
+
+`eia_motor_gasolina_gtm_1986_2024.csv` conserva la serie abierta
+`INTL.62-2-GTM-TJ.A`. Las observaciones cubren 1986–2024 y la proyección
+2025–2030 ajusta OLS log-lineal en 2015–2024. El archivo, sus metadatos y su
+SHA-256 se validan antes de calcular. Esta actualización no sustituye la serie
+del artículo; `comparacion_linajes.csv` informa sus diferencias.
+
+## Salidas y controles
+
+- `06_resultados/emisiones/serie_articulo_anual.csv`: 38 observaciones
+  recuperadas y siete proyecciones.
+- `06_resultados/emisiones/contrafactual_articulo_anual.csv`: 90 filas para los
+  tres contextos de las cuatro gráficas originales.
+- `06_resultados/emisiones/contrafactual_articulo_resumen.csv`: períodos
+  histórico, prospectivo y su unión disjunta.
+- `06_resultados/emisiones/actualizacion_eia_anual.csv` y
+  `actualizacion_eia_resumen.csv`: linaje EIA separado.
+- `07_verificacion/controles_emisiones_ttw.csv`: controles de integridad
+  pública, cobertura, unicidad, *round-trips*, OLS, proyecciones golden,
+  identidades, sumas y redondeo.
+- `07_verificacion/diagnostico_proyeccion_emisiones.json`: procedencia,
+  coeficientes y reglas de ambos modelos log-lineales.
+
+Solo deben publicarse resultados cuando todos los controles terminen en
+`PASS`.

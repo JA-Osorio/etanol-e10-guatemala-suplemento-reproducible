@@ -1,0 +1,118 @@
+{
+  "descripcion": "Reproduccion forense del calculo economico heredado y recalculo E10 con la misma logica.",
+  "advertencia_metodologica": "E5_original reproduce el cuaderno recuperado. E10_misma_metodologia cambia solamente la mezcla y ambos se comparan contra E0. E10_penalizacion_lhv es una sensibilidad separada que modifica solo cost-push y no forma parte de la reproduccion historica. La variable histórica llamada VA es un residual no intermedio domestico, no VAB.",
+  "fuente_manuscrito": {
+    "fuente_id": "F026",
+    "titulo": "Implementación tardía de la Ley del Alcohol Carburante: efectos económico-ambientales en Guatemala (1986–2030)",
+    "archivo_origen": "identificador_omitido_en_rama_publica",
+    "sha256": "omitido_en_rama_publica",
+    "publicacion_identificadores": "sanitizada",
+    "redistribuido": false,
+    "ubicaciones_economicas": "abstract y resumen; pp. 10-11; tabla y graficas en pp. 15-17; discusión p. 20; conclusiones p. 23"
+  },
+  "reconstruccion_instantanea_historica": {
+    "dependencia_mip": "03_configuracion/dependencia_mip.json",
+    "matriz_z": "z_domestica",
+    "vector_x": "produccion_utilizacion.total_utilizacion_precios_basicos",
+    "ajuste_x_historico": {
+      "codigo": "P105",
+      "restar_millones_q_2013": 23.987995654604674,
+      "valor_resultante_millones_q_2013": 11393.680408429595,
+      "interpretacion": "Offset de reconstruccion del vector historico P105; difiere del ajuste CIF/FOB serializado en la MIP publica (23.9879956546108) solo por redondeo."
+    },
+    "calculo": "A=Z/x por columna; L=inversa(I-A); residual=x-suma_columnas(Z)"
+  },
+  "artefactos_historicos_no_redistribuidos": {
+    "cantidad": 9,
+    "identificadores": "omitidos_en_rama_publica",
+    "publicacion_identificadores": "sanitizada"
+  },
+  "concordancia_agregaciones": {
+    "archivo": "02_concordancias/agregaciones_economia_articulo.csv",
+    "sha256": "8dcb665d2591d129b4de1147fa710b4cb6794c53027628ae4438c6f7febca6a7"
+  },
+  "parametros_originales": {
+    "codigo_combustibles": "P068",
+    "codigo_cana": "P010",
+    "participacion_gasolina_en_p068": 0.45,
+    "precio_gasolina_q_por_litro": 10.5,
+    "precio_etanol_q_por_litro": 7.5,
+    "penalizacion_energetica_fija": 0.03,
+    "participacion_domestica_etanol": 0.7,
+    "lhv_gasolina_mj_por_litro": 32.0,
+    "lhv_etanol_mj_por_litro": 21.2
+  },
+  "escenarios": [
+    {
+      "id": "E5_original",
+      "etiqueta": "E5 original recuperado",
+      "mezcla_etanol": 0.05,
+      "metodo_penalizacion": "fija_original",
+      "naturaleza": "reproduccion_forense"
+    },
+    {
+      "id": "E10_misma_metodologia",
+      "etiqueta": "E10 con la misma metodologia del E5 original",
+      "mezcla_etanol": 0.1,
+      "metodo_penalizacion": "fija_original",
+      "naturaleza": "recalculo_comparable"
+    },
+    {
+      "id": "E10_penalizacion_lhv",
+      "etiqueta": "E10 con penalizacion derivada de LHV",
+      "mezcla_etanol": 0.1,
+      "metodo_penalizacion": "factor_lhv",
+      "naturaleza": "sensibilidad_fisica_separada"
+    }
+  ],
+  "valores_reportados_manuscrito": {
+    "fuente_id": "F026",
+    "cost_push_porcentaje": {
+      "Transporte": 1.53,
+      "Industria quimica": 0.8,
+      "Servicios": 0.4,
+      "Agricultura": 0.2
+    },
+    "demand_pull_millones_q_2013": {
+      "Cana de azucar": 3.17,
+      "Industria quimica": 0.8,
+      "Servicios": 0.5,
+      "Transporte": 0.3,
+      "Total": 4.77
+    },
+    "multiplicador_produccion": 1.13,
+    "ubicaciones": {
+      "cost_push_y_demand_pull_principales": "abstract y resumen; tabla y graficas economicas en pp. 15-17; sintesis final",
+      "total_4_77": "abstract y resumen; fila Total de la tabla demand-pull",
+      "total_4_75_inconsistente": "discusion p. 20"
+    },
+    "inconsistencias_internas": {
+      "demand_pull_total_discusion_millones_q_2013": 4.75
+    }
+  },
+  "golden_e5_cuaderno_recuperado": {
+      "r_fraccion": 0.015285714285714347,
+      "delta_y_total_millones_q_2013": 1.8772035273857974,
+      "delta_x_total_millones_q_2013": 3.16677166970337,
+      "delta_residual_no_intermedio_domestico_total_millones_q_2013": 1.8772035273857952,
+      "delta_precio_total_promedio_fraccion": 1.926442334455293e-06,
+      "delta_precio_transporte_p104_p105_promedio_fraccion": 1.974047358012278e-05,
+      "delta_x_p010_millones_q_2013": 1.879071380916647,
+      "multiplicador_produccion": 1.6869623477180609
+  },
+  "referencia_e10_recalculo_misma_metodologia": {
+      "r_fraccion": 0.0005714285714286671,
+      "delta_y_total_millones_q_2013": 3.754407054771595,
+      "delta_x_total_millones_q_2013": 6.33354333940674,
+      "delta_residual_no_intermedio_domestico_total_millones_q_2013": 3.7544070547715904,
+      "delta_precio_total_promedio_fraccion": 7.201653586749935e-08,
+      "delta_precio_transporte_p104_p105_promedio_fraccion": 7.37961629163589e-07,
+      "delta_x_p010_millones_q_2013": 3.758142761833294,
+      "multiplicador_produccion": 1.6869623477180609
+  },
+  "tolerancia_golden_absoluta": 5e-13,
+  "salidas": {
+    "directorio": "06_resultados/economia_articulo",
+    "controles": "07_verificacion/controles_economia_articulo.csv"
+  }
+}

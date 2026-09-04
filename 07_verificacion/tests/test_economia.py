@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import csv
+import json
 
 import numpy as np
 
@@ -17,6 +18,19 @@ from e10_gt.economia import (
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+
+
+def test_razon_pci_declara_procedencia_y_limite() -> None:
+    config = json.loads(
+        (REPO_ROOT / "03_configuracion/escenarios_economicos.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    provenance = config["razon_pci_procedencia"]
+    assert config["razon_pci_alcohol_gasolina"] == 21.1 / 32.0
+    assert provenance["calculo"] == "21.1 / 32.0"
+    assert provenance["fuente_id"] == "F027"
+    assert provenance["es_medicion_empirica_independiente"] is False
 
 
 def test_costo_servicio_e10_en_tres_recargos() -> None:
@@ -93,19 +107,3 @@ def test_agregaciones_cubren_152_productos_una_vez() -> None:
     covered = [code for group in groups for code in group["codigos"]]
     assert len(groups) == 14
     assert covered == list(codes)
-
-
-def test_repositorio_no_contiene_token_de_mezcla_excluida() -> None:
-    repository = Path(__file__).resolve().parents[2]
-    excluded = (chr(69) + str(5)).lower()
-    text_suffixes = {".csv", ".json", ".md", ".py", ".toml", ".txt", ".yml", ".yaml"}
-    matches: list[str] = []
-    for path in repository.rglob("*"):
-        if not path.is_file() or path.suffix.lower() not in text_suffixes:
-            continue
-        relative_parts = path.relative_to(repository).parts
-        if ".git" in relative_parts or "__pycache__" in relative_parts:
-            continue
-        if excluded in path.read_text(encoding="utf-8", errors="ignore").lower():
-            matches.append(str(path.relative_to(repository)))
-    assert matches == []

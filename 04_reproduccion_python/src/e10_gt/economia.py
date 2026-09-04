@@ -1,4 +1,4 @@
-"""Canal económico para E10, E15 y E20 con la MIP Guatemala 2013.
+"""Reconstrucción económica contemporánea para E10, E15 y E20.
 
 La función pública :func:`ejecutar_economia` está diseñada para ser llamada por
 el script maestro. Lee los parámetros trazables del repositorio, verifica los
@@ -9,8 +9,10 @@ CSV canónicos de la MIP fijada y mantiene separados:
 * la transmisión de costos por P068; y
 * tres contrafactuales domésticos normalizados, nunca combinados entre sí.
 
-Los recargos de entrega son sensibilidades ilustrativas. El precio FOB no se
-presenta como costo entregado observado en Guatemala.
+Este módulo no reproduce las cifras económicas del manuscrito. Ese linaje se
+trata en :mod:`e10_gt.economia_articulo`. Los recargos de entrega son
+sensibilidades ilustrativas y el precio FOB no se presenta como costo entregado
+observado en Guatemala.
 """
 
 from __future__ import annotations
@@ -416,9 +418,11 @@ def _format_report(
     controls: Sequence[Mapping[str, Any]],
 ) -> str:
     lines = [
-        "# Resultados económicos reproducibles",
+        "# Reconstrucción económica contemporánea E10/E15/E20",
         "",
         "## Lectura correcta",
+        "",
+        "Esta malla no reproduce las cifras económicas del manuscrito; es una reconstrucción separada con precios contemporáneos y la MIP canónica.",
         "",
         "El abastecimiento central es 100% importado y su choque de demanda final doméstica es cero. Los recargos de 0%, 15% y 30% tienen el mismo estatus: son sensibilidades ilustrativas aplicadas a una referencia FOB y no observaciones de costo entregado en Guatemala.",
         "",
@@ -953,6 +957,7 @@ def ejecutar_economia(
             "recargos_entrega_ilustrativos": list(recargos),
             "participaciones_gasolina_en_p068": list(fuel_shares),
             "razon_pci_alcohol_gasolina": lhv_ratio,
+            "razon_pci_procedencia": dict(config["razon_pci_procedencia"]),
             "volumen_referencia_gasolina_galones": baseline_gallons,
             "referencia_comercial_eeuu_galones_anuales": (
                 commercial_reference_gallons

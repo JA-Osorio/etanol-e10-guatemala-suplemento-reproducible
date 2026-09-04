@@ -1,7 +1,7 @@
 {
-  "title": "E10 Guatemala: material suplementario reproducible",
+  "title": "Etanol en Guatemala: reproducción E5 y corrección E10",
   "upload_type": "software",
-  "description": "Código, datos publicables, controles y resultados para reproducir el análisis de emisiones TTW y reconstruir el análisis económico de E10 en Guatemala, con transiciones hipotéticas a E15 y E20.",
+  "description": "Código, datos publicables, controles y resultados para reproducir el cálculo económico E5 del manuscrito, recalcular E10 con la misma metodología y mantener separadas las emisiones TTW y la reconstrucción contemporánea E10/E15/E20.",
   "creators": [
     {
       "name": "Osorio, Juan Alejandro",
@@ -14,14 +14,14 @@
       "name": "Salguero, Noé"
     }
   ],
-  "version": "0.1.0",
+  "version": "0.2.0",
   "language": "spa",
   "access_right": "open",
   "license": "mit",
   "related_identifiers": [
     {
       "identifier": "https://github.com/JA-Osorio/etanol-e10-guatemala-suplemento-reproducible",
-      "relation": "isSupplementTo",
+      "relation": "isAlternateIdentifier",
       "scheme": "url"
     },
     {
@@ -31,6 +31,7 @@
     }
   ],
   "keywords": [
+    "E5",
     "E10",
     "etanol",
     "emisiones TTW",
@@ -38,5 +39,5 @@
     "Guatemala",
     "reproducibilidad"
   ],
-  "notes": "Versión pública de desarrollo. Añadir el DOI asignado a este suplemento antes de la primera publicación estable."
+  "notes": "Versión pública de desarrollo. Añadir el DOI asignado a este suplemento antes de la primera publicación estable. El código nuevo se distribuye bajo MIT; las tablas y concordancias propias bajo CC BY 4.0; los insumos de terceros conservan sus condiciones. Los artefactos históricos E5 están pendientes de autorización y no deben depositarse hasta resolver su licencia. Véase LICENSE_DATA."
 }

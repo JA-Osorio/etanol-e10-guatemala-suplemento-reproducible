@@ -1,6 +1,6 @@
 cff-version: "1.2.0"
-message: "Si utiliza este material suplementario, cite la versión archivada indicada en este archivo."
-title: "E10 Guatemala: material suplementario reproducible"
+message: "Si utiliza este material suplementario, cite esta versión y el repositorio; añada el DOI cuando exista una versión archivada."
+title: "Etanol en Guatemala: reproducción E5 y corrección E10"
 type: software
 authors:
   - family-names: "Osorio"
@@ -10,11 +10,12 @@ authors:
     given-names: "Silvia Patricia"
   - family-names: "Salguero"
     given-names: "Noé"
-version: 0.1.0
-date-released: 2026-08-24
+version: 0.2.0
+date-released: 2026-09-03
 repository-code: "https://github.com/JA-Osorio/etanol-e10-guatemala-suplemento-reproducible"
 license: MIT
 keywords:
+  - "E5"
   - "E10"
   - "etanol"
   - "emisiones TTW"

@@ -9,6 +9,7 @@ from typing import Any
 
 from .descargas import resolver_mip
 from .economia import ejecutar_economia
+from .economia_articulo import ejecutar_economia_articulo
 from .emisiones_ttw import run_emissions_pipeline
 from .figuras import crear_figuras
 from .transiciones import ejecutar_transiciones
@@ -24,17 +25,21 @@ def ejecutar_todo(
     raiz_mip: str | Path | None = None,
     crear_png: bool = True,
 ) -> dict[str, Any]:
-    """Ejecuta emisiones, economía, transiciones, figuras y controles globales."""
+    """Ejecuta los linajes históricos, actuales y sus controles globales."""
 
     repo_root = Path(raiz_repositorio).resolve()
     mip_root = resolver_mip(repo_root, raiz_mip)
     emissions = run_emissions_pipeline(repo_root)
+    article_economics = ejecutar_economia_articulo(
+        repo_root, raiz_mip=mip_root
+    )
     economics = ejecutar_economia(repo_root, mip_root)
     transitions = ejecutar_transiciones(repo_root)
     figures = crear_figuras(repo_root, emissions, economics) if crear_png else []
     summary = escribir_resumen_global(
         repo_root,
         emisiones=emissions,
+        economia_articulo=article_economics,
         economia=economics,
         transiciones=transitions,
         figuras=figures,
@@ -42,6 +47,7 @@ def ejecutar_todo(
     return {
         "resumen": summary,
         "emisiones": emissions,
+        "economia_articulo": article_economics,
         "economia": economics,
         "transiciones": transitions,
         "figuras": figures,
@@ -51,7 +57,9 @@ def ejecutar_todo(
 
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Ejecuta de punta a punta el material suplementario E10 Guatemala."
+        description=(
+            "Reproduce el E5 histórico, recalcula E10 y ejecuta el suplemento."
+        )
     )
     parser.add_argument(
         "--mip-dir",

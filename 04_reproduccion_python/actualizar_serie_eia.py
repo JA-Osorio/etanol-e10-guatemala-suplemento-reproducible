@@ -46,7 +46,7 @@ def _extract_record(zip_path: Path, series_id: str) -> dict[str, Any]:
 
 def _download() -> Path:
     url = "https://www.eia.gov/opendata/bulk/INTL.zip"
-    request = urllib.request.Request(url, headers={"User-Agent": "e10-gt-suplemento/0.1.0"})
+    request = urllib.request.Request(url, headers={"User-Agent": "e10-gt-suplemento/0.2.0"})
     handle = tempfile.NamedTemporaryFile(prefix="eia-intl-", suffix=".zip", delete=False)
     path = Path(handle.name)
     with handle, urllib.request.urlopen(request, timeout=180) as response:

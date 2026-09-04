@@ -1,6 +1,8 @@
-# Resultados económicos reproducibles
+# Reconstrucción económica contemporánea E10/E15/E20
 
 ## Lectura correcta
+
+Esta malla no reproduce las cifras económicas del manuscrito; es una reconstrucción separada con precios contemporáneos y la MIP canónica.
 
 El abastecimiento central es 100% importado y su choque de demanda final doméstica es cero. Los recargos de 0%, 15% y 30% tienen el mismo estatus: son sensibilidades ilustrativas aplicadas a una referencia FOB y no observaciones de costo entregado en Guatemala.
 
@@ -51,7 +53,7 @@ Promedio ponderado por producción básica de 2013, con participación de gasoli
 
 ## Verificación
 
-Controles ejecutados: 27. Fallos: 0.
+Controles ejecutados: 28. Fallos: 0.
 
 ## Limitaciones decisivas
 

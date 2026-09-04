@@ -1,10 +1,94 @@
-check_id,check_type,computed,expected,difference,status
-published_historical_1986_2023_scenario_co2_tonnes,exact_integer,97197053,97197053,0,PASS
-published_historical_1986_2023_avoided_co2_tonnes,exact_integer,7121034,7121034,0,PASS
-published_prospective_2026_2030_scenario_co2_tonnes,exact_integer,38879982,38879982,0,PASS
-published_prospective_2026_2030_avoided_co2_tonnes,exact_integer,2848499,2848499,0,PASS
-eia_observed_year_coverage,boolean,1986-2024; n=39,1986-2024; n=39,,PASS
-forecast_year_coverage,boolean,"[2025, 2026, 2027, 2028, 2029, 2030]","[2025, 2026, 2027, 2028, 2029, 2030]",,PASS
-scenario_set,boolean,"['E10', 'E15', 'E20']","['E10', 'E15', 'E20']",,PASS
-minimum_blend_share,boolean,0.1,>=0.10,,PASS
-positive_energy,boolean,True,True,,PASS
+check_id,check_type,computed,expected,difference,tolerance,scope,evidence,status
+article_recovered_source_sha256,boolean,e6a1fd25f0326f29a58869624ee574d604d75c51178ea6d44937070dddbf2d9f,e6a1fd25f0326f29a58869624ee574d604d75c51178ea6d44937070dddbf2d9f,,0,article_notebook_recovered,01_datos/insumos_publicables/contrafactual_articulo_recuperado_1986_2023.csv,PASS
+article_private_notebook_identifiers_sanitized,boolean,True,True,,0,article_notebook_recovered,private notebook IDs and binary hashes are omitted from the public branch,PASS
+article_primary_workbook_copy_recovered,boolean,recovered_external_copy_verified,recovered_external_copy_verified,,0,article_notebook_recovered,an external workbook copy was recovered and computationally verified,PASS
+article_primary_workbook_identifier_sanitized,boolean,omitted_in_public_review_branch,omitted_in_public_review_branch,,0,article_notebook_recovered,the external workbook identifier is retained only in the local full audit,PASS
+article_primary_workbook_cross_validation_complete,boolean,BTU=38; CO2=38; volume=38,38 matches for each series,,0,article_notebook_recovered,comparison against recovered Plotly arrays at 15 significant digits,PASS
+article_primary_workbook_not_redistributed_without_license,boolean,stored=False; redistribution=False; status=source_provenance_and_license_pending,stored=False; redistribution=False; source_provenance_and_license_pending,,0,article_notebook_recovered,computational verification does not establish statistical provenance or license,PASS
+article_history_coverage_unique,boolean,1986-2023; n=38,1986-2023; n=38,,0,article_notebook_recovered,38 consecutive x values embedded in the retrospective Plotly output,PASS
+article_roundtrip_BTU_to_C0,absolute_tolerance,7.450580596923828e-09,0.0,7.450580596923828e-09,1e-07,article_notebook_recovered,max |BTU * 0.001055056 / 1e6 * 69.3 - embedded C0| tonnes,PASS
+article_roundtrip_BTU_to_million_us_gallons,absolute_tolerance,9.663381206337363e-13,0.0,9.663381206337363e-13,1e-09,article_notebook_recovered,max volume residual against the embedded Plotly series,PASS
+article_roundtrip_C0_to_BTU_relative,absolute_tolerance,3.774758283725532e-15,0.0,3.774758283725532e-15,2e-14,article_notebook_recovered,inverse forensic reconstruction from embedded C0,PASS
+article_series_coverage_unique,boolean,1986-2030; n=45,1986-2030; n=45,,0,article_notebook_recovered,38 recovered observations plus 7 recalculated projections,PASS
+article_golden_fit_fit_start_year,boolean,2014,2014,,0,article_notebook_recovered,"centered log-energy form equivalent to notebook log-liters OLS, 2014-2023",PASS
+article_golden_fit_fit_end_year,boolean,2023,2023,,0,article_notebook_recovered,"centered log-energy form equivalent to notebook log-liters OLS, 2014-2023",PASS
+article_golden_fit_n_observations,boolean,10,10,,0,article_notebook_recovered,"centered log-energy form equivalent to notebook log-liters OLS, 2014-2023",PASS
+article_golden_fit_center_year,boolean,2014,2014,,0,article_notebook_recovered,"centered log-energy form equivalent to notebook log-liters OLS, 2014-2023",PASS
+article_golden_fit_intercept_at_center,absolute_tolerance,10.893958689832722,10.893958689832722,0.0,1e-12,article_notebook_recovered,"centered log-energy form equivalent to notebook log-liters OLS, 2014-2023",PASS
+article_golden_fit_slope_per_year,absolute_tolerance,0.05725550520597046,0.05725550520597046,0.0,1e-12,article_notebook_recovered,"centered log-energy form equivalent to notebook log-liters OLS, 2014-2023",PASS
+article_golden_fit_annual_growth_rate,absolute_tolerance,0.058926337025396514,0.058926337025396514,0.0,1e-12,article_notebook_recovered,"centered log-energy form equivalent to notebook log-liters OLS, 2014-2023",PASS
+article_golden_fit_r_squared_log_scale,absolute_tolerance,0.9031155140965328,0.9031155140965328,0.0,1e-12,article_notebook_recovered,"centered log-energy form equivalent to notebook log-liters OLS, 2014-2023",PASS
+article_golden_fit_rmse_log_scale,absolute_tolerance,0.053864135445215316,0.053864135445215316,0.0,1e-12,article_notebook_recovered,"centered log-energy form equivalent to notebook log-liters OLS, 2014-2023",PASS
+article_golden_projection_C0,absolute_tolerance,3.557652235031128e-07,0.0,3.557652235031128e-07,0.001,article_notebook_recovered,maximum residual against Plotly prospective E0 y-values,PASS
+article_golden_projection_million_us_gallons,absolute_tolerance,4.229150363244116e-11,0.0,4.229150363244116e-11,1e-08,article_notebook_recovered,maximum residual against Plotly volume y-values,PASS
+article_golden_projection_policy_scenario,absolute_tolerance,3.3155083656311035e-07,0.0,3.3155083656311035e-07,0.001,article_notebook_recovered,maximum residual against Plotly prospective scenario y-values,PASS
+article_context_year_coverage_unique,boolean,"{'historical_counterfactual_1986_2023': 38, 'prospective_policy_2024_2030': 7, 'integrated_figure_1986_2030': 45}","{'historical_counterfactual_1986_2023': 38, 'prospective_policy_2024_2030': 7, 'integrated_figure_1986_2030': 45}",,0,article_notebook_recovered,38 historical + 7 prospective + 45 integrated rows,PASS
+article_2024_2025_context_difference_explicit,boolean,policy=E0; integrated=E10,policy=E0; integrated=E10,,0,article_notebook_recovered,the original prospective and integrated figures use different context rules,PASS
+article_policy_application_2026,boolean,True,True,,0,article_notebook_recovered,E0 in 2024-2025 and E10 in 2026-2030,PASS
+article_annual_balance_C0_Cs_A,absolute_tolerance,0.0,0.0,0.0,1e-08,article_notebook_recovered,all three contexts: C0 = Cs + A,PASS
+article_golden_historical_reference_co2_tonnes,absolute_tolerance,104318087.17351945,104318087.17351946,-1.4901161193847656e-08,1e-05,article_notebook_recovered,sum of the 38 retrospective Plotly values,PASS
+article_golden_historical_scenario_co2_tonnes,absolute_tolerance,97197053.07658882,97197053.07658882,0.0,1e-05,article_notebook_recovered,sum of the 38 retrospective Plotly values,PASS
+article_golden_historical_avoided_co2_tonnes,absolute_tolerance,7121034.096930633,7121034.096930638,-4.6566128730773926e-09,1e-05,article_notebook_recovered,sum of the 38 retrospective Plotly values,PASS
+article_annual_historical_1986_2023_row_C0,boolean,104318087,104318087,,0,article_notebook_recovered,annual reconstruction rounded half-up versus published table,PASS
+article_annual_historical_1986_2023_row_C10,boolean,97197053,97197053,,0,article_notebook_recovered,annual reconstruction rounded half-up versus published table,PASS
+article_annual_historical_1986_2023_row_A,boolean,7121034,7121034,,0,article_notebook_recovered,annual reconstruction rounded half-up versus published table,PASS
+article_annual_prospective_2026_2030_row_C0,boolean,41728481,41728481,,0,article_notebook_recovered,annual reconstruction rounded half-up versus published table,PASS
+article_annual_prospective_2026_2030_row_C10,boolean,38879982,38879982,,0,article_notebook_recovered,annual reconstruction rounded half-up versus published table,PASS
+article_annual_prospective_2026_2030_row_A,boolean,2848499,2848499,,0,article_notebook_recovered,annual reconstruction rounded half-up versus published table,PASS
+article_summary_gap_2024_2025,boolean,"('1986-2023|2026-2030', '2024|2025', 43)","('1986-2023|2026-2030', '2024|2025', 43)",,0,article_notebook_recovered,"published total is a disjoint union, not a continuous 1986-2030 sum",PASS
+article_golden_integrated_figure_reference_co2_tonnes,absolute_tolerance,159667840.79532015,159667840.79531884,1.3113021850585938e-06,0.001,article_notebook_recovered,sum of the 45 values embedded in the integrated Plotly figure,PASS
+article_golden_integrated_figure_scenario_co2_tonnes,absolute_tolerance,148768483.17389908,148768483.17389786,1.2218952178955078e-06,0.001,article_notebook_recovered,sum of the 45 values embedded in the integrated Plotly figure,PASS
+article_golden_integrated_figure_avoided_co2_tonnes,absolute_tolerance,10899357.62142107,10899357.621420981,8.940696716308594e-08,0.001,article_notebook_recovered,sum of the 45 values embedded in the integrated Plotly figure,PASS
+article_integrated_minus_reported_disjoint_avoided,absolute_tolerance,929824.8283222299,929824.8283222113,1.862645149230957e-08,0.001,article_notebook_recovered,"the 929,824.8 t difference is the integrated E10 treatment of 2024-2025",PASS
+published_aggregate_historical_1986_2023_row_C0,exact_integer,104318087,104318087,0,0,aggregate_arithmetic_reconciliation_only,reference_co2_tonnes,PASS
+published_aggregate_historical_1986_2023_row_C10,exact_integer,97197053,97197053,0,0,aggregate_arithmetic_reconciliation_only,scenario_co2_tonnes,PASS
+published_aggregate_historical_1986_2023_row_A,exact_integer,7121034,7121034,0,0,aggregate_arithmetic_reconciliation_only,avoided_co2_tonnes,PASS
+published_aggregate_prospective_2026_2030_row_C0,exact_integer,41728481,41728481,0,0,aggregate_arithmetic_reconciliation_only,reference_co2_tonnes,PASS
+published_aggregate_prospective_2026_2030_row_C10,exact_integer,38879982,38879982,0,0,aggregate_arithmetic_reconciliation_only,scenario_co2_tonnes,PASS
+published_aggregate_prospective_2026_2030_row_A,exact_integer,2848499,2848499,0,0,aggregate_arithmetic_reconciliation_only,avoided_co2_tonnes,PASS
+eia_source_sha256,boolean,ea40d27e53c0a9338dbb280cdc1dd807eafed82b1fc962718433ce8199fa7010,ea40d27e53c0a9338dbb280cdc1dd807eafed82b1fc962718433ce8199fa7010,,0,EIA_open_update,01_datos/insumos_publicables/eia_motor_gasolina_gtm_1986_2024.csv,PASS
+eia_series_id,boolean,INTL.62-2-GTM-TJ.A,INTL.62-2-GTM-TJ.A,,0,EIA_open_update,source_metadata.series_id,PASS
+eia_source_metadata,boolean,"{'series_name': 'Motor gasoline consumption, Guatemala, Annual', 'units': 'terajoules', 'source': 'EIA, U.S. Energy Information Administration', 'last_updated': '2026-07-02T16:19:06-04:00'}","{'series_name': 'Motor gasoline consumption, Guatemala, Annual', 'units': 'terajoules', 'source': 'EIA, U.S. Energy Information Administration', 'last_updated': '2026-07-02T16:19:06-04:00'}",,0,EIA_open_update,all source rows validated while loading,PASS
+eia_observed_year_coverage,boolean,1986-2024; n=39,1986-2024; n=39,,0,EIA_open_update,observed annual rows,PASS
+forecast_year_coverage,boolean,"[2025, 2026, 2027, 2028, 2029, 2030]","[2025, 2026, 2027, 2028, 2029, 2030]",,0,EIA_open_update,log-linear projected rows,PASS
+observed_forecast_years_disjoint,boolean,[],[],,0,EIA_open_update,observed and projected statuses must not overlap,PASS
+annual_energy_unique_complete_years,boolean,1986-2030; n=45,1986-2030; n=45,,0,EIA_open_update,one energy row per year,PASS
+scenario_set,boolean,"['E10', 'E15', 'E20']","['E10', 'E15', 'E20']",,0,EIA_open_update,scenario_id values,PASS
+unique_year_scenario_rows,boolean,unique=135; rows=135,unique=135; rows=135,,0,EIA_open_update,year x scenario_id primary key,PASS
+minimum_blend_share,boolean,0.1,>=0.10,,0,all_scenarios,blend_shares configuration,PASS
+positive_energy,boolean,True,True,,0,EIA_open_update,observed and projected energy_tj,PASS
+rho_notebook_parameter_ratio,absolute_tolerance,0.659375,0.659375,0.0,1e-12,physical_model_recovered_notebook,rho = LHV_ethanol / LHV_gasoline = 21.1 / 32.0,PASS
+rho_not_independent_empirical_input,boolean,False,False,,0,physical_model_recovered_notebook,explicit_ratio_of_recovered_notebook_parameters_21.1_MJ_per_L_over_32.0_MJ_per_L,PASS
+identity_r_E10,absolute_tolerance,0.9659375,0.9659375,0.0,1e-12,all_scenarios,r(s) = (1-s) + s*rho,PASS
+identity_F_E10,absolute_tolerance,0.9317373018440634,0.9317373018440634,0.0,1e-12,all_scenarios,F(s) = (1-s) / r(s),PASS
+identity_d_E10,absolute_tolerance,0.06826269815593655,0.06826269815593655,0.0,1e-12,all_scenarios,d(s) = 1 - F(s),PASS
+identity_r_E15,absolute_tolerance,0.94890625,0.94890625,0.0,1e-12,all_scenarios,r(s) = (1-s) + s*rho,PASS
+identity_F_E15,absolute_tolerance,0.8957681541248148,0.8957681541248148,0.0,1e-12,all_scenarios,F(s) = (1-s) / r(s),PASS
+identity_d_E15,absolute_tolerance,0.10423184587518519,0.10423184587518519,0.0,1e-12,all_scenarios,d(s) = 1 - F(s),PASS
+identity_r_E20,absolute_tolerance,0.931875,0.931875,0.0,1e-12,all_scenarios,r(s) = (1-s) + s*rho,PASS
+identity_F_E20,absolute_tolerance,0.8584842387659289,0.8584842387659289,0.0,1e-12,all_scenarios,F(s) = (1-s) / r(s),PASS
+identity_d_E20,absolute_tolerance,0.14151576123407106,0.14151576123407106,0.0,1e-12,all_scenarios,d(s) = 1 - F(s),PASS
+annual_identity_C0,absolute_tolerance,0.0,0.0,0.0,1e-08,EIA_open_update,maximum absolute residual: C0 = energy_tj * EF,PASS
+annual_identity_Cs,absolute_tolerance,0.0,0.0,0.0,1e-08,EIA_open_update,maximum absolute residual: Cs = C0 * F(s),PASS
+annual_identity_A,absolute_tolerance,4.656612873077393e-10,0.0,4.656612873077393e-10,1e-08,EIA_open_update,maximum absolute residual: A = C0 * d(s),PASS
+annual_balance_C0_Cs_A,absolute_tolerance,0.0,0.0,0.0,1e-08,EIA_open_update,maximum absolute residual: C0 = Cs + A,PASS
+open_summary_year_coverage,boolean,True,True,,0,EIA_open_update,n_years in every period x scenario summary,PASS
+open_summary_sums,absolute_tolerance,0.0,0.0,0.0,1e-08,EIA_open_update,"maximum residual of annual-to-period sums for C0, Cs and A",PASS
+published_periods_disjoint,boolean,[],[],,0,published_aggregate_reconciliation,reported period bounds,PASS
+published_period_gap_2024_2025,boolean,"[2024, 2025]","[2024, 2025]",,0,published_aggregate_reconciliation,years deliberately absent from the two aggregate controls,PASS
+aggregate_period_scenario_rows,boolean,"[('historical_1986_2023', 'E10'), ('historical_1986_2023', 'E15'), ('historical_1986_2023', 'E20'), ('prospective_2026_2030', 'E10'), ('prospective_2026_2030', 'E15'), ('prospective_2026_2030', 'E20')]","[('historical_1986_2023', 'E10'), ('historical_1986_2023', 'E15'), ('historical_1986_2023', 'E20'), ('prospective_2026_2030', 'E10'), ('prospective_2026_2030', 'E15'), ('prospective_2026_2030', 'E20')]",,0,published_aggregate_reconciliation,one aggregate row per reported period x scenario,PASS
+aggregate_balance_C0_Cs_A,boolean,True,True,,0,published_aggregate_reconciliation,integer balance C0 = Cs + A,PASS
+aggregate_round_half_up,boolean,True,True,,0,published_aggregate_reconciliation,"Decimal.quantize(1, ROUND_HALF_UP)",PASS
+round_half_up_contract,boolean,"[2, 3]","[2, 3]",,0,published_aggregate_reconciliation,sentinel values distinguish half-up from banker's rounding,PASS
+golden_fit_fit_start_year,boolean,2015,2015,,0,EIA_open_update,versioned golden OLS diagnostic,PASS
+golden_fit_fit_end_year,boolean,2024,2024,,0,EIA_open_update,versioned golden OLS diagnostic,PASS
+golden_fit_n_observations,boolean,10,10,,0,EIA_open_update,versioned golden OLS diagnostic,PASS
+golden_fit_center_year,boolean,2015,2015,,0,EIA_open_update,versioned golden OLS diagnostic,PASS
+golden_fit_intercept_at_center,absolute_tolerance,11.09129381037133,11.09129381037133,0.0,1e-12,EIA_open_update,versioned golden OLS diagnostic,PASS
+golden_fit_slope_per_year,absolute_tolerance,0.04491590414913126,0.04491590414913126,0.0,1e-12,EIA_open_update,versioned golden OLS diagnostic,PASS
+golden_fit_annual_growth_rate,absolute_tolerance,0.04593989700451506,0.04593989700451506,0.0,1e-12,EIA_open_update,versioned golden OLS diagnostic,PASS
+golden_fit_r_squared_log_scale,absolute_tolerance,0.9214271219208949,0.9214271219208949,0.0,1e-12,EIA_open_update,versioned golden OLS diagnostic,PASS
+golden_fit_rmse_log_scale,absolute_tolerance,0.0376732385538687,0.0376732385538687,0.0,1e-12,EIA_open_update,versioned golden OLS diagnostic,PASS
+golden_forecast_years,boolean,"['2025', '2026', '2027', '2028', '2029', '2030']","['2025', '2026', '2027', '2028', '2029', '2030']",,0,EIA_open_update,versioned forecast years,PASS
+golden_forecast_energy_tj,absolute_tolerance,0.0,0.0,0.0,1e-09,EIA_open_update,maximum absolute residual against versioned 2025-2030 values,PASS
+lineages_remain_separate,boolean,article_notebook_recovered annual; manuscript aggregates golden; EIA open annual,article_notebook_recovered annual; manuscript aggregates golden; EIA open annual,,0,all_outputs,three source_lineage labels; no concatenation or calibration,PASS

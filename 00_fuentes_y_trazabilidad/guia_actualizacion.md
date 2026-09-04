@@ -1,6 +1,6 @@
 # Guía didáctica de actualización
 
-Esta guía mantiene separadas la reproducción del artículo y la evidencia normativa nueva. Ninguna actualización debe modificar silenciosamente una corrida anterior.
+Esta guía mantiene separadas la reproducción de las cifras del manuscrito y la evidencia normativa nueva. Ninguna actualización debe modificar silenciosamente una corrida anterior.
 
 ## 1. Prepare una versión nueva
 
@@ -34,20 +34,45 @@ El escenario `observado_importado` usa flujos registrados. El escenario `domesti
 
 ## 4. Actualice emisiones sin mezclar objetivos
 
-- `reproduccion_publicada` conserva el supuesto anual y los agregados del artículo.
+- `contrafactual_articulo_anual.csv` conserva la reconstrucción desde las
+  salidas ejecutadas del cuaderno original; no la reemplace con la serie EIA.
+- `reproduccion_publicada` conserva, por compatibilidad del identificador, los
+  agregados reportados y funciona como control dorado, no como fuente anual.
 - `actualizacion_normativa_2026` aplica la fecha y el alcance regulatorio vigentes.
 - Las nuevas series deben conservar su fuente, unidad, cobertura y transformación.
-- Un cambio de calendario no debe reescribir la reproducción publicada.
+- Un cambio de calendario no debe reescribir la reproducción de las cifras reportadas.
+
+Si vuelve a obtenerse el cuaderno original, regenere el derivado con
+`04_reproduccion_python/extraer_contrafactual_cuaderno.py` y compruebe sus
+cuatro controles semánticos Plotly. La copia recuperada del libro primario ya
+constituye otro escalón de procedencia: su estructura y comparación 38/38 están
+documentadas. Una copia futura debe volver a validarse con
+`04_reproduccion_python/verificar_series_ccse.py` contra la reconstrucción
+existente; la identidad del archivo puede cotejarse en el registro local
+autorizado, pero se omite en esta rama pública. No cambie
+silenciosamente el estado `recovered_output` por `original_input`: el CSV sigue
+siendo derivado, aunque ya esté validado contra una copia del libro primario.
 
 Si se actualiza la serie energética, ejecute primero controles de unidades, valores ausentes, cobertura anual y suma acumulada. Genere una tabla de diferencias frente a la versión anterior.
 
 ## 5. Actualice el análisis económico
 
-1. Mantenga fijada la dependencia de la MIP; una MIP nueva requiere configuración y concordancia nuevas.
-2. Separe efectos domésticos de fugas importadas.
-3. Active producción nacional solo con una participación respaldada por datos o como contrafactual rotulado.
-4. Registre precios comparables en fecha, mercado, condición de entrega, impuestos y unidad energética.
-5. Ejecute todas las sensibilidades y explique cualquier diferencia material.
+1. No modifique `E5_original`: sus parámetros, la receta pública P105 y los
+   resultados son una instantánea forense con pruebas doradas. Los archivos
+   privados originales se identifican únicamente en el registro local de
+   auditoría; esta rama pública omite esos identificadores. Una corrección
+   adicional debe crear otro escenario y no reescribir ese linaje.
+2. Mantenga `E10_misma_metodologia` como comparación de un solo cambio
+   (`mix_e: 0.05 → 0.10`). Las mejoras de método deben publicarse como
+   sensibilidades distintas, por ejemplo `E10_penalizacion_lhv`.
+3. Mantenga fijada la dependencia de la MIP contemporánea; una MIP nueva
+   requiere configuración y concordancia nuevas.
+4. Separe efectos domésticos de fugas importadas.
+5. Active producción nacional solo con una participación respaldada por datos
+   o como contrafactual rotulado.
+6. Registre precios comparables en fecha, mercado, condición de entrega,
+   impuestos y unidad energética.
+7. Ejecute todas las sensibilidades y explique cualquier diferencia material.
 
 ## 6. Seguridad alimentaria y gobernanza
 
@@ -64,7 +89,7 @@ Registre las afirmaciones institucionales y críticas como hipótesis contrastab
 ## 7. Ejecute y verifique
 
 ```bash
-python -m pip install -e .
+python -m pip install -e '.[test]'
 python 04_reproduccion_python/reproducir_todo.py
 python -m pytest 07_verificacion/tests
 ```

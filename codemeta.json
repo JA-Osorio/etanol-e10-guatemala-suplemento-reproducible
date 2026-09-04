@@ -1,10 +1,10 @@
 {
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
-  "name": "E10 Guatemala: material suplementario reproducible",
-  "description": "Código, datos publicables y controles para reproducir emisiones TTW y reconstruir el análisis económico E10 en Guatemala, con transiciones hipotéticas a E15 y E20.",
-  "version": "0.1.0",
-  "datePublished": "2026-08-24",
+  "name": "Etanol en Guatemala: reproducción E5 y corrección E10",
+  "description": "Código, datos y controles para reproducir el cálculo económico E5 del manuscrito, recalcular E10 con la misma metodología y mantener separada la reconstrucción contemporánea.",
+  "version": "0.2.0",
+  "datePublished": "2026-09-03",
   "programmingLanguage": "Python",
   "runtimePlatform": "Python >=3.11",
   "codeRepository": "https://github.com/JA-Osorio/etanol-e10-guatemala-suplemento-reproducible",
@@ -28,10 +28,13 @@
     }
   ],
   "softwareRequirements": [
-    "numpy >=1.24,<3",
-    "matplotlib >=3.7,<4"
+    "numpy ==2.3.5",
+    "pandas ==2.2.3",
+    "matplotlib ==3.10.8",
+    "plotly ==6.5.2"
   ],
   "keywords": [
+    "E5",
     "E10",
     "etanol",
     "emisiones TTW",

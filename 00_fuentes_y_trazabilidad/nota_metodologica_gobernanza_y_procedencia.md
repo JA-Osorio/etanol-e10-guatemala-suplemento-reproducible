@@ -10,7 +10,13 @@ Los textos legales, acuerdos oficiales y estadísticas públicas fijan hechos no
 
 La actualización factual usa 10 % en gasolina regular desde el 22 de agosto de 2026. La gasolina superior queda fuera porque su incorporación depende de dictámenes técnicos y económicos y no existe, en las fuentes registradas al 24 de agosto, una fecha verificable de inicio.
 
-La salida `reproduccion_publicada` conserva el supuesto anual del artículo. La salida `actualizacion_normativa_2026` incorpora el calendario vigente y no debe compararse como si fuera una corrección del cálculo publicado.
+La salida `reproduccion_publicada` —identificador preservado por
+compatibilidad— conserva los agregados del manuscrito como controles dorados.
+La trayectoria anual del artículo está separada en
+`contrafactual_articulo_anual.csv` y procede de las salidas recuperadas de su
+cuaderno. La salida `actualizacion_normativa_2026` incorpora el calendario
+vigente y no debe compararse como si fuera una corrección de las cifras
+reportadas.
 
 ## Procedencia
 

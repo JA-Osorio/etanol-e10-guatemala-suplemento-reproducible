@@ -1,0 +1,22 @@
+id_escenario,naturaleza,categoria,numero_productos,delta_precio_directo_promedio_fraccion,delta_precio_total_promedio_fraccion,delta_precio_total_minimo_fraccion,delta_precio_total_maximo_fraccion
+E5_original,reproduccion_forense,Cana de azucar,1,1.8168695893995755e-06,2.9336920308423794e-06,2.9336920308423794e-06,2.9336920308423794e-06
+E5_original,reproduccion_forense,"Agricultura, silvicultura y pesca (sin P010)",29,1.4675383472755737e-06,2.181076992357036e-06,3.8894332419088817e-07,1.1746218180884206e-05
+E5_original,reproduccion_forense,Combustibles y refinacion,3,2.678605013000179e-06,3.1386079394970326e-06,0.0,6.329191295344922e-06
+E5_original,reproduccion_forense,Industria quimica ampliada,6,2.86366736721377e-07,8.999990781861152e-07,5.220207770268556e-07,1.5233628510818536e-06
+E5_original,reproduccion_forense,Transporte y logistica,6,7.687926111609341e-06,8.557658682739597e-06,6.314058341326937e-07,2.0588996478810444e-05
+E5_original,reproduccion_forense,Servicios (sin transporte y logistica),44,5.120911773181544e-07,9.185137407675124e-07,0.0,3.3386898197352148e-06
+E5_original,reproduccion_forense,Otros,63,1.0532087822126453e-06,1.9056815087332231e-06,0.0,6.021642615915888e-06
+E10_misma_metodologia,recalculo_comparable,Cana de azucar,1,6.792035848223823e-08,1.0967073012496668e-07,1.0967073012496668e-07,1.0967073012496668e-07
+E10_misma_metodologia,recalculo_comparable,"Agricultura, silvicultura y pesca (sin P010)",29,5.486124662713322e-08,8.153558849934178e-08,1.4539937352932778e-08,4.391109600331262e-07
+E10_misma_metodologia,recalculo_comparable,Combustibles y refinacion,3,1.0013476684114455e-07,1.1733113792514188e-07,0.0,2.3660528206900768e-07
+E10_misma_metodologia,recalculo_comparable,Industria quimica ampliada,6,1.070529856902519e-08,3.364482535275746e-08,1.9514795402876296e-08,5.694814396568609e-08
+E10_misma_metodologia,recalculo_comparable,Transporte y logistica,6,2.873991069760972e-07,3.1991247412115873e-07,2.3603956416179325e-08,7.696821113575255e-07
+E10_misma_metodologia,recalculo_comparable,Servicios (sin transporte y logistica),44,1.9143595413765913e-08,3.433696227168832e-08,0.0,1.2481083438264523e-07
+E10_misma_metodologia,recalculo_comparable,Otros,63,3.937229092384364e-08,7.124043023302934e-08,0.0,2.2510813517446242e-07
+E10_penalizacion_lhv,sensibilidad_fisica_separada,Cana de azucar,1,6.370279417802922e-07,1.0286064597747855e-06,1.0286064597747855e-06,1.0286064597747855e-06
+E10_penalizacion_lhv,sensibilidad_fisica_separada,"Agricultura, silvicultura y pesca (sin P010)",29,5.145459741871492e-07,7.647257653559563e-07,1.3637069315491525e-07,4.11844044015494e-06
+E10_penalizacion_lhv,sensibilidad_fisica_separada,Combustibles y refinacion,3,9.39168253037785e-07,1.1004537515616721e-06,0.0,2.219131041397272e-06
+E10_penalizacion_lhv,sensibilidad_fisica_separada,Industria quimica ampliada,6,1.0040545229679554e-07,3.155562533084881e-07,1.8303009918607443e-07,5.341190734167823e-07
+E10_penalizacion_lhv,sensibilidad_fisica_separada,Transporte y logistica,6,2.695528493630589e-06,3.0004727521062253e-06,2.213825148994551e-07,7.218881380777964e-06
+E10_penalizacion_lhv,sensibilidad_fisica_separada,Servicios (sin transporte y logistica),44,1.795485986413785e-07,3.22047835019029e-07,0.0,1.1706061439509256e-06
+E10_penalizacion_lhv,sensibilidad_fisica_separada,Otros,63,3.692743974098717e-07,6.681670364675272e-07,0.0,2.1112988098507745e-06

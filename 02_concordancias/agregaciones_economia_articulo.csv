@@ -1,0 +1,8 @@
+categoria,codigos_incluidos,codigos_excluidos,uso,origen
+Cana de azucar,P010,,demand_pull,"P010 recibe el choque de demanda en el cuaderno E5 original."
+"Agricultura, silvicultura y pesca (sin P010)",P001-P030,P010,"demand_pull; cost_push","Agregacion analitica explícita de esta reconciliacion."
+Combustibles y refinacion,P068-P070,,"demand_pull; cost_push","Agregacion analitica explícita de esta reconciliacion."
+Industria quimica ampliada,P071-P076,,"demand_pull; cost_push","Agregacion analitica explícita de esta reconciliacion."
+Transporte y logistica,P104-P109,,"demand_pull; cost_push","Agregacion analitica ampliada; el resumen historico informa por separado P104-P105."
+Servicios (sin transporte y logistica),P101-P150,P104-P109,"demand_pull; cost_push","Agregacion analitica explícita de esta reconciliacion."
+Otros,complemento,,"demand_pull; cost_push","Complemento de P001-P152 no cubierto por las categorias anteriores."

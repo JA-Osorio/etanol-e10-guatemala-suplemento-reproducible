@@ -1,4 +1,81 @@
 {
+  "article_recovered": {
+    "contexts": {
+      "historical_counterfactual_1986_2023": "E10 applied to all recovered historical years",
+      "integrated_figure_1986_2030": "E10 applied to all 45 years, as in the original figure",
+      "prospective_policy_2024_2030": "E0 in 2024-2025; E10 in 2026-2030"
+    },
+    "equivalence": "liters_and_energy_tj_differ_only_by_a_positive_constant_scale",
+    "fit": {
+      "annual_growth_rate": 0.058926337025396514,
+      "center_year": 2014,
+      "fit_end_year": 2023,
+      "fit_start_year": 2014,
+      "intercept_at_center": 10.893958689832722,
+      "n_observations": 10,
+      "r_squared_log_scale": 0.9031155140965328,
+      "rmse_log_scale": 0.053864135445215316,
+      "slope_per_year": 0.05725550520597046
+    },
+    "implementation_equation": "ln(energy_tj) = intercept_at_center + slope_per_year * (year - 2014)",
+    "model": "ordinary_least_squares_on_log_energy",
+    "original_notebook_equation": "ln(liters) = b0 + b1 * year",
+    "retransformation": "exp_without_smearing_correction",
+    "source_metadata": {
+      "corroborating_notebook": {
+        "drive_file_id": "omitido_en_rama_publica",
+        "original_sha256": "omitido_en_rama_publica",
+        "publicacion_identificadores": "sanitizada",
+        "stored_in_repository": false,
+        "title": "cuaderno_corroborante_privado",
+        "valid_cells_zero_based": "0,3-17",
+        "warning": "cell_1_displays_an_undefined_object; cells_after_17_are_failed_refactor_with_dummy_data"
+      },
+      "expected_workbook": {
+        "columns": [
+          "No",
+          "año",
+          "BTU"
+        ],
+        "cross_validation": {
+          "interpretation": "all_38_rows_match_after_canonical_15_significant_digit_serialization",
+          "matched_btu_rows": 38,
+          "matched_million_us_gallons_rows": 38,
+          "matched_reference_co2_rows": 38,
+          "max_absolute_btu_difference": 0.05078125,
+          "max_absolute_million_us_gallons_difference": 5.684341886080801e-13,
+          "max_absolute_reference_co2_tonnes_difference": 4.656612873077393e-09,
+          "max_relative_btu_difference": 3.946560658289442e-15,
+          "serialization_significant_digits": 15
+        },
+        "filename": "identificador_omitido_en_rama_publica",
+        "identifier_status": "omitted_in_public_review_branch",
+        "recovery_status": "recovered_external_copy_verified",
+        "redistribution_allowed": false,
+        "row_count": 38,
+        "sheet": "1.CONSUMO FINAL",
+        "source_provenance_status": "source_provenance_and_license_pending",
+        "stored_in_repository": false,
+        "year_end": 2023,
+        "year_start": 1986
+      },
+      "primary_notebook": {
+        "drive_file_id": "omitido_en_rama_publica",
+        "original_sha256": "omitido_en_rama_publica",
+        "publicacion_identificadores": "sanitizada",
+        "stored_in_repository": false,
+        "title": "cuaderno_principal_privado",
+        "valid_cells_zero_based": "0-15"
+      },
+      "row_count": 38,
+      "source_csv": "01_datos/insumos_publicables/contrafactual_articulo_recuperado_1986_2023.csv",
+      "source_csv_sha256": "e6a1fd25f0326f29a58869624ee574d604d75c51178ea6d44937070dddbf2d9f",
+      "value_status": "recovered_from_embedded_notebook_plotly_output",
+      "year_end": 2023,
+      "year_start": 1986
+    },
+    "summary_rule": "1986-2023 plus 2026-2030; excludes 2024-2025"
+  },
   "equation": "ln(energy_tj) = intercept_at_center + slope_per_year * (year - center_year)",
   "fit": {
     "annual_growth_rate": 0.04593989700451506,
@@ -11,13 +88,68 @@
     "rmse_log_scale": 0.0376732385538687,
     "slope_per_year": 0.04491590414913126
   },
+  "golden_values": {
+    "fit": {
+      "annual_growth_rate": 0.04593989700451506,
+      "center_year": 2015,
+      "fit_end_year": 2024,
+      "fit_start_year": 2015,
+      "intercept_at_center": 11.09129381037133,
+      "n_observations": 10,
+      "r_squared_log_scale": 0.9214271219208949,
+      "rmse_log_scale": 0.0376732385538687,
+      "slope_per_year": 0.04491590414913126
+    },
+    "forecast_energy_tj": {
+      "2025": 102790.9765975941,
+      "2026": 107513.18347548097,
+      "2027": 112452.32805097218,
+      "2028": 117618.37641955166,
+      "2029": 123021.75251810423,
+      "2030": 128673.35915810075
+    }
+  },
+  "lineage": {
+    "open_update": "EIA_open_data_separate_lineage",
+    "published_aggregates": {
+      "annual_recovered_input_in_repository": true,
+      "annual_reproduction_status": "primary_workbook_copy_recovered_and_computationally_verified",
+      "calculation_scope": "aggregate_arithmetic_reconciliation_only",
+      "excluded_gap_years": [
+        2024,
+        2025
+      ],
+      "original_annual_file_in_repository": false,
+      "reported_annual_source": "manuscript_reports_OLADE_sieLAC_but_workbook_provenance_not_independently_verified",
+      "role": "golden_control_not_calculation_source",
+      "rounding_method": "decimal_round_half_up_to_integer_tonnes"
+    },
+    "rho": {
+      "derived_e10_reduction_fraction": 0.0682626981559366,
+      "e10_blend_share": 0.1,
+      "equation": "rho = LHV_ethanol / LHV_gasoline = 21.1 / 32.0",
+      "ethanol_lhv_mj_per_liter": 21.1,
+      "gasoline_lhv_mj_per_liter": 32.0,
+      "independent_empirical_input": false,
+      "status": "explicit_notebook_parameter_ratio",
+      "symbol": "rho",
+      "value": 0.659375
+    },
+    "separation_rule": "Recovered article annual values, manuscript aggregate golden controls, and EIA annual values remain separate and are only compared"
+  },
   "model": "ordinary_least_squares_on_log_energy",
   "retransformation": "exp_without_smearing_correction",
   "source_metadata": {
     "last_updated": "2026-07-02T16:19:06-04:00",
     "name": "Motor gasoline consumption, Guatemala, Annual",
+    "row_count": 39,
     "series_id": "INTL.62-2-GTM-TJ.A",
     "source": "EIA, U.S. Energy Information Administration",
-    "units": "terajoules"
+    "source_csv": "01_datos/insumos_publicables/eia_motor_gasolina_gtm_1986_2024.csv",
+    "source_sha256": "ea40d27e53c0a9338dbb280cdc1dd807eafed82b1fc962718433ce8199fa7010",
+    "source_url": "https://www.eia.gov/opendata/bulkfiles.php",
+    "units": "terajoules",
+    "year_end": 2024,
+    "year_start": 1986
   }
 }

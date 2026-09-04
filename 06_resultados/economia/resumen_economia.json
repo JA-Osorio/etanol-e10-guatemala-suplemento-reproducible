@@ -24,6 +24,12 @@
       0.502
     ],
     "razon_pci_alcohol_gasolina": 0.659375,
+    "razon_pci_procedencia": {
+      "calculo": "21.1 / 32.0",
+      "fuente_id": "F027",
+      "estatus": "parametros_explicitos_del_cuaderno_recuperado_reutilizados_en_este_linaje",
+      "es_medicion_empirica_independiente": false
+    },
     "volumen_referencia_gasolina_galones": 719880000.0,
     "referencia_comercial_eeuu_galones_anuales": 50000000.0,
     "referencia_comercial_es_compra_observada": false,

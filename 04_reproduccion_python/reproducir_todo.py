@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ejecuta de punta a punta el material suplementario E10 Guatemala."""
+"""Ejecuta el E5 histórico, la corrección E10 y el resto del suplemento."""
 
 from __future__ import annotations
 

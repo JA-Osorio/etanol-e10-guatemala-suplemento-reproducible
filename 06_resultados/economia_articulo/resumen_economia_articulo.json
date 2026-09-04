@@ -1,0 +1,593 @@
+{
+  "estado": "controles_aprobados",
+  "lectura_principal": {
+    "escenario_historico_identificado": "E5_original",
+    "1_53_por_ciento": "r E5; no efecto propagado de transporte",
+    "3_17_millones_q_2013": "delta x total E5; no produccion P010",
+    "sensibilidad_lhv_separada": true,
+    "sensibilidad_lhv_solo_canal_precios": true,
+    "variable_va_historica_es_residual_no_vab": true
+  },
+  "fuente_manuscrito": {
+    "fuente_id": "F026",
+    "titulo": "Implementación tardía de la Ley del Alcohol Carburante: efectos económico-ambientales en Guatemala (1986–2030)",
+    "archivo_origen": "identificador_omitido_en_rama_publica",
+    "sha256": "omitido_en_rama_publica",
+    "publicacion_identificadores": "sanitizada",
+    "redistribuido": false,
+    "ubicaciones_economicas": "abstract y resumen; pp. 10-11; tabla y graficas en pp. 15-17; discusión p. 20; conclusiones p. 23"
+  },
+  "reconstruccion_instantanea_historica": {
+    "codigo_ajustado": "P105",
+    "x_canonico_millones_q_2013": 11417.6684040842,
+    "ajuste_restar_millones_q_2013": 23.987995654604674,
+    "x_historico_reconstruido_millones_q_2013": 11393.680408429595,
+    "x_historico_esperado_millones_q_2013": 11393.680408429595
+  },
+  "escenarios": [
+    {
+      "id_escenario": "E5_original",
+      "etiqueta": "E5 original recuperado",
+      "naturaleza": "reproduccion_forense",
+      "mezcla_etanol_fraccion": 0.05,
+      "metodo_penalizacion": "fija_original",
+      "factor_energetico_aplicado": 1.03,
+      "penalizacion_efectiva_fraccion": 0.030000000000000027,
+      "precio_mezcla_q_por_litro": 10.35,
+      "r_fraccion": 0.015285714285714347,
+      "r_porcentaje": 1.5285714285714347,
+      "uso_total_p068_millones_q_2013": 119.18752554830465,
+      "gasto_gasolina_base_millones_q_2013": 53.63438649673709,
+      "valor_etanol_total_millones_q_2013": 2.681719324836855,
+      "valor_etanol_domestico_millones_q_2013": 1.8772035273857983,
+      "delta_precio_directo_promedio_fraccion": 1.2443501241498124e-06,
+      "delta_precio_total_promedio_fraccion": 1.9264423344552988e-06,
+      "delta_precio_transporte_p104_p105_promedio_fraccion": 1.9740473580122824e-05,
+      "delta_y_total_millones_q_2013": 1.8772035273857983,
+      "delta_x_total_millones_q_2013": 3.166771669703373,
+      "delta_residual_no_intermedio_domestico_total_millones_q_2013": 1.8772035273857983,
+      "delta_x_p010_millones_q_2013": 1.8790713809166484,
+      "multiplicador_produccion": 1.6869623477180617
+    },
+    {
+      "id_escenario": "E10_misma_metodologia",
+      "etiqueta": "E10 con la misma metodologia del E5 original",
+      "naturaleza": "recalculo_comparable",
+      "mezcla_etanol_fraccion": 0.1,
+      "metodo_penalizacion": "fija_original",
+      "factor_energetico_aplicado": 1.03,
+      "penalizacion_efectiva_fraccion": 0.030000000000000027,
+      "precio_mezcla_q_por_litro": 10.200000000000001,
+      "r_fraccion": 0.0005714285714286671,
+      "r_porcentaje": 0.05714285714286671,
+      "uso_total_p068_millones_q_2013": 119.18752554830465,
+      "gasto_gasolina_base_millones_q_2013": 53.63438649673709,
+      "valor_etanol_total_millones_q_2013": 5.36343864967371,
+      "valor_etanol_domestico_millones_q_2013": 3.7544070547715966,
+      "delta_precio_directo_promedio_fraccion": 4.651776165046789e-08,
+      "delta_precio_total_promedio_fraccion": 7.201653586749956e-08,
+      "delta_precio_transporte_p104_p105_promedio_fraccion": 7.379616291635907e-07,
+      "delta_y_total_millones_q_2013": 3.7544070547715966,
+      "delta_x_total_millones_q_2013": 6.333543339406746,
+      "delta_residual_no_intermedio_domestico_total_millones_q_2013": 3.7544070547715966,
+      "delta_x_p010_millones_q_2013": 3.7581427618332968,
+      "multiplicador_produccion": 1.6869623477180617
+    },
+    {
+      "id_escenario": "E10_penalizacion_lhv",
+      "etiqueta": "E10 con penalizacion derivada de LHV",
+      "naturaleza": "sensibilidad_fisica_separada",
+      "mezcla_etanol_fraccion": 0.1,
+      "metodo_penalizacion": "factor_lhv",
+      "factor_energetico_aplicado": 1.034928848641656,
+      "penalizacion_efectiva_fraccion": 0.03492884864165591,
+      "precio_mezcla_q_por_litro": 10.200000000000001,
+      "r_fraccion": 0.005359452966180234,
+      "r_porcentaje": 0.5359452966180234,
+      "uso_total_p068_millones_q_2013": 119.18752554830465,
+      "gasto_gasolina_base_millones_q_2013": 53.63438649673709,
+      "valor_etanol_total_millones_q_2013": 5.36343864967371,
+      "valor_etanol_domestico_millones_q_2013": 3.7544070547715966,
+      "delta_precio_directo_promedio_fraccion": 4.3629207240084113e-07,
+      "delta_precio_total_promedio_fraccion": 6.754461643458046e-07,
+      "delta_precio_transporte_p104_p105_promedio_fraccion": 6.921373624107848e-06,
+      "delta_y_total_millones_q_2013": 3.7544070547715966,
+      "delta_x_total_millones_q_2013": 6.333543339406746,
+      "delta_residual_no_intermedio_domestico_total_millones_q_2013": 3.7544070547715966,
+      "delta_x_p010_millones_q_2013": 3.7581427618332968,
+      "multiplicador_produccion": 1.6869623477180617
+    }
+  ],
+  "reconciliacion_articulo": [
+    {
+      "id_afirmacion_manuscrito": "cost_push_transporte",
+      "bloque": "cost_push",
+      "etiqueta_manuscrito": "Transporte",
+      "valor_reportado_manuscrito": 1.53,
+      "unidad": "porcentaje",
+      "metrica_comparable": "promedio de delta p propagado en P104-P105, como en el resumen historico",
+      "valor_e5_recalculado": 0.0019740473580122826,
+      "valor_e10_misma_metodologia": 7.379616291635907e-05,
+      "coincide_e5_con_manuscrito": false,
+      "coincide_e10_con_manuscrito": false,
+      "valor_alternativo_que_coincide": 1.5285714285714347,
+      "metrica_alternativa": "r E5, choque inicial de la mezcla",
+      "diagnostico": "1.53% coincide por redondeo con r del E5; no con el efecto propagado de transporte."
+    },
+    {
+      "id_afirmacion_manuscrito": "cost_push_industria_quimica",
+      "bloque": "cost_push",
+      "etiqueta_manuscrito": "Industria quimica",
+      "valor_reportado_manuscrito": 0.8,
+      "unidad": "porcentaje",
+      "metrica_comparable": "promedio simple de delta p propagado por categoria",
+      "valor_e5_recalculado": 8.999990781861152e-05,
+      "valor_e10_misma_metodologia": 3.364482535275746e-06,
+      "coincide_e5_con_manuscrito": false,
+      "coincide_e10_con_manuscrito": false,
+      "valor_alternativo_que_coincide": null,
+      "metrica_alternativa": "",
+      "diagnostico": "El porcentaje del manuscrito no se reproduce con la agregacion analitica explicita y la formula heredada."
+    },
+    {
+      "id_afirmacion_manuscrito": "cost_push_servicios",
+      "bloque": "cost_push",
+      "etiqueta_manuscrito": "Servicios",
+      "valor_reportado_manuscrito": 0.4,
+      "unidad": "porcentaje",
+      "metrica_comparable": "promedio simple de delta p propagado por categoria",
+      "valor_e5_recalculado": 9.185137407675124e-05,
+      "valor_e10_misma_metodologia": 3.4336962271688317e-06,
+      "coincide_e5_con_manuscrito": false,
+      "coincide_e10_con_manuscrito": false,
+      "valor_alternativo_que_coincide": null,
+      "metrica_alternativa": "",
+      "diagnostico": "El porcentaje del manuscrito no se reproduce con la agregacion analitica explicita y la formula heredada."
+    },
+    {
+      "id_afirmacion_manuscrito": "cost_push_agricultura",
+      "bloque": "cost_push",
+      "etiqueta_manuscrito": "Agricultura",
+      "valor_reportado_manuscrito": 0.2,
+      "unidad": "porcentaje",
+      "metrica_comparable": "promedio simple de delta p propagado por categoria",
+      "valor_e5_recalculado": 0.0002181076992357036,
+      "valor_e10_misma_metodologia": 8.153558849934177e-06,
+      "coincide_e5_con_manuscrito": false,
+      "coincide_e10_con_manuscrito": false,
+      "valor_alternativo_que_coincide": null,
+      "metrica_alternativa": "",
+      "diagnostico": "El porcentaje del manuscrito no se reproduce con la agregacion analitica explicita y la formula heredada."
+    },
+    {
+      "id_afirmacion_manuscrito": "demand_pull_cana_de_azucar",
+      "bloque": "demand_pull",
+      "etiqueta_manuscrito": "Cana de azucar",
+      "valor_reportado_manuscrito": 3.17,
+      "unidad": "millones Q de 2013",
+      "metrica_comparable": "delta x agregado por categoria",
+      "valor_e5_recalculado": 1.8790713809166484,
+      "valor_e10_misma_metodologia": 3.7581427618332968,
+      "coincide_e5_con_manuscrito": false,
+      "coincide_e10_con_manuscrito": false,
+      "valor_alternativo_que_coincide": 3.166771669703373,
+      "metrica_alternativa": "delta x total E5",
+      "diagnostico": "3.17 coincide por redondeo con delta x total E5; no con la produccion P010."
+    },
+    {
+      "id_afirmacion_manuscrito": "demand_pull_industria_quimica",
+      "bloque": "demand_pull",
+      "etiqueta_manuscrito": "Industria quimica",
+      "valor_reportado_manuscrito": 0.8,
+      "unidad": "millones Q de 2013",
+      "metrica_comparable": "delta x agregado por categoria",
+      "valor_e5_recalculado": 0.15544877931807533,
+      "valor_e10_misma_metodologia": 0.31089755863615065,
+      "coincide_e5_con_manuscrito": false,
+      "coincide_e10_con_manuscrito": false,
+      "valor_alternativo_que_coincide": null,
+      "metrica_alternativa": "",
+      "diagnostico": "El valor del manuscrito no se reproduce con la agregacion analitica explicita y la formula heredada."
+    },
+    {
+      "id_afirmacion_manuscrito": "demand_pull_servicios",
+      "bloque": "demand_pull",
+      "etiqueta_manuscrito": "Servicios",
+      "valor_reportado_manuscrito": 0.5,
+      "unidad": "millones Q de 2013",
+      "metrica_comparable": "delta x agregado por categoria",
+      "valor_e5_recalculado": 0.9344844870466555,
+      "valor_e10_misma_metodologia": 1.868968974093311,
+      "coincide_e5_con_manuscrito": false,
+      "coincide_e10_con_manuscrito": false,
+      "valor_alternativo_que_coincide": null,
+      "metrica_alternativa": "",
+      "diagnostico": "El valor del manuscrito no se reproduce con la agregacion analitica explicita y la formula heredada."
+    },
+    {
+      "id_afirmacion_manuscrito": "demand_pull_transporte",
+      "bloque": "demand_pull",
+      "etiqueta_manuscrito": "Transporte",
+      "valor_reportado_manuscrito": 0.3,
+      "unidad": "millones Q de 2013",
+      "metrica_comparable": "delta x agregado por categoria",
+      "valor_e5_recalculado": 0.06014984880916645,
+      "valor_e10_misma_metodologia": 0.1202996976183329,
+      "coincide_e5_con_manuscrito": false,
+      "coincide_e10_con_manuscrito": false,
+      "valor_alternativo_que_coincide": null,
+      "metrica_alternativa": "",
+      "diagnostico": "El valor del manuscrito no se reproduce con la agregacion analitica explicita y la formula heredada."
+    },
+    {
+      "id_afirmacion_manuscrito": "demand_pull_total",
+      "bloque": "demand_pull",
+      "etiqueta_manuscrito": "Total",
+      "valor_reportado_manuscrito": 4.77,
+      "unidad": "millones Q de 2013",
+      "metrica_comparable": "delta x total",
+      "valor_e5_recalculado": 3.166771669703373,
+      "valor_e10_misma_metodologia": 6.333543339406746,
+      "coincide_e5_con_manuscrito": false,
+      "coincide_e10_con_manuscrito": false,
+      "valor_alternativo_que_coincide": null,
+      "metrica_alternativa": "",
+      "diagnostico": "4.77 no se reproduce ni para E5 ni para E10 con la logica heredada."
+    },
+    {
+      "id_afirmacion_manuscrito": "demand_pull_total_discusion",
+      "bloque": "demand_pull",
+      "etiqueta_manuscrito": "Total (discusion)",
+      "valor_reportado_manuscrito": 4.75,
+      "unidad": "millones Q de 2013",
+      "metrica_comparable": "delta x total",
+      "valor_e5_recalculado": 3.166771669703373,
+      "valor_e10_misma_metodologia": 6.333543339406746,
+      "coincide_e5_con_manuscrito": false,
+      "coincide_e10_con_manuscrito": false,
+      "valor_alternativo_que_coincide": null,
+      "metrica_alternativa": "",
+      "diagnostico": "La discusion dice 4.75, mientras el abstract, el resumen y la tabla demand-pull dicen 4.77; ninguno se reproduce con la logica heredada."
+    },
+    {
+      "id_afirmacion_manuscrito": "multiplicador_produccion",
+      "bloque": "demand_pull",
+      "etiqueta_manuscrito": "Multiplicador",
+      "valor_reportado_manuscrito": 1.13,
+      "unidad": "razon",
+      "metrica_comparable": "delta x total / delta y total",
+      "valor_e5_recalculado": 1.6869623477180617,
+      "valor_e10_misma_metodologia": 1.6869623477180617,
+      "coincide_e5_con_manuscrito": false,
+      "coincide_e10_con_manuscrito": false,
+      "valor_alternativo_que_coincide": null,
+      "metrica_alternativa": "",
+      "diagnostico": "1.13 no se reproduce; la matriz heredada arroja aproximadamente 1.687."
+    }
+  ],
+  "controles": [
+    {
+      "control": "sha256_02_resultados_y_diccionario/productos_2013.csv",
+      "valor_observado": "2101df76af6295d722348aa86fda083172cffb369168a55afeb24c20a481d88c",
+      "valor_esperado": "2101df76af6295d722348aa86fda083172cffb369168a55afeb24c20a481d88c",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "sha256_02_resultados_y_diccionario/matrices/Z_domestica_2013.csv",
+      "valor_observado": "8ebe5ec5c254a55c4be6899befccd276ddac0d4f67ed22e3a089fc947dd06a7d",
+      "valor_esperado": "8ebe5ec5c254a55c4be6899befccd276ddac0d4f67ed22e3a089fc947dd06a7d",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "sha256_02_resultados_y_diccionario/vectores/produccion_y_utilizacion_2013.csv",
+      "valor_observado": "2e7b27d44e16c79a35472f777ed4a223b7f4125662d9e63216e2020b1bbef9a1",
+      "valor_esperado": "2e7b27d44e16c79a35472f777ed4a223b7f4125662d9e63216e2020b1bbef9a1",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "sha256_02_concordancias/agregaciones_economia_articulo.csv",
+      "valor_observado": "8dcb665d2591d129b4de1147fa710b4cb6794c53027628ae4438c6f7febca6a7",
+      "valor_esperado": "8dcb665d2591d129b4de1147fa710b4cb6794c53027628ae4438c6f7febca6a7",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "dimension_productos",
+      "valor_observado": 152,
+      "valor_esperado": 152,
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "ajuste_historico_p105",
+      "valor_observado": 11393.680408429595,
+      "valor_esperado": 11393.680408429595,
+      "tolerancia_absoluta": 5e-12,
+      "cumple": true,
+      "interpretacion": "Se resta el offset P105 para reconstruir la variante de x usada por el cuaderno; la diferencia frente al ajuste CIF/FOB público es solo de redondeo."
+    },
+    {
+      "control": "definicion_residual_no_intermedio_domestico",
+      "valor_observado": 0.0,
+      "valor_esperado": 0.0,
+      "tolerancia_absoluta": 1e-12,
+      "cumple": true,
+      "interpretacion": "Es x menos la suma por columna de Z domestica; no VAB."
+    },
+    {
+      "control": "identidad_inversa_leontief",
+      "valor_observado": 9.992007221626409e-16,
+      "valor_esperado": 0.0,
+      "tolerancia_absoluta": 1e-12,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E5_original_r_fraccion",
+      "valor_observado": 0.015285714285714347,
+      "valor_esperado": 0.015285714285714347,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E5_original_delta_y_total_millones_q_2013",
+      "valor_observado": 1.8772035273857983,
+      "valor_esperado": 1.8772035273857974,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E5_original_delta_x_total_millones_q_2013",
+      "valor_observado": 3.166771669703373,
+      "valor_esperado": 3.16677166970337,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E5_original_delta_residual_no_intermedio_domestico_total_millones_q_2013",
+      "valor_observado": 1.8772035273857983,
+      "valor_esperado": 1.8772035273857952,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E5_original_delta_precio_total_promedio_fraccion",
+      "valor_observado": 1.9264423344552988e-06,
+      "valor_esperado": 1.926442334455293e-06,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E5_original_delta_precio_transporte_p104_p105_promedio_fraccion",
+      "valor_observado": 1.9740473580122824e-05,
+      "valor_esperado": 1.974047358012278e-05,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E5_original_delta_x_p010_millones_q_2013",
+      "valor_observado": 1.8790713809166484,
+      "valor_esperado": 1.879071380916647,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E5_original_multiplicador_produccion",
+      "valor_observado": 1.6869623477180617,
+      "valor_esperado": 1.6869623477180609,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E10_misma_metodologia_r_fraccion",
+      "valor_observado": 0.0005714285714286671,
+      "valor_esperado": 0.0005714285714286671,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E10_misma_metodologia_delta_y_total_millones_q_2013",
+      "valor_observado": 3.7544070547715966,
+      "valor_esperado": 3.754407054771595,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E10_misma_metodologia_delta_x_total_millones_q_2013",
+      "valor_observado": 6.333543339406746,
+      "valor_esperado": 6.33354333940674,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E10_misma_metodologia_delta_residual_no_intermedio_domestico_total_millones_q_2013",
+      "valor_observado": 3.7544070547715966,
+      "valor_esperado": 3.7544070547715904,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E10_misma_metodologia_delta_precio_total_promedio_fraccion",
+      "valor_observado": 7.201653586749956e-08,
+      "valor_esperado": 7.201653586749935e-08,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E10_misma_metodologia_delta_precio_transporte_p104_p105_promedio_fraccion",
+      "valor_observado": 7.379616291635907e-07,
+      "valor_esperado": 7.37961629163589e-07,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E10_misma_metodologia_delta_x_p010_millones_q_2013",
+      "valor_observado": 3.7581427618332968,
+      "valor_esperado": 3.758142761833294,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "golden_E10_misma_metodologia_multiplicador_produccion",
+      "valor_observado": 1.6869623477180617,
+      "valor_esperado": 1.6869623477180609,
+      "tolerancia_absoluta": 5e-13,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "1_53_es_r_e5_por_redondeo",
+      "valor_observado": 1.5285714285714347,
+      "valor_esperado": 1.53,
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": "Es el choque inicial r, no el precio propagado de transporte."
+    },
+    {
+      "control": "1_53_no_es_transporte_propagado",
+      "valor_observado": 0.0019740473580122826,
+      "valor_esperado": 1.53,
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "3_17_es_delta_x_total_e5_por_redondeo",
+      "valor_observado": 3.166771669703373,
+      "valor_esperado": 3.17,
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": "Es el total de produccion E5, no la produccion de P010."
+    },
+    {
+      "control": "3_17_no_es_delta_x_p010",
+      "valor_observado": 1.8790713809166484,
+      "valor_esperado": 3.17,
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "manuscrito_no_reproducido_cost_push_industria_quimica",
+      "valor_observado": "E5=8.999990781861152e-05; E10=3.364482535275746e-06",
+      "valor_esperado": "no coincide con el valor reportado en el manuscrito",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "manuscrito_no_reproducido_cost_push_servicios",
+      "valor_observado": "E5=9.185137407675124e-05; E10=3.4336962271688317e-06",
+      "valor_esperado": "no coincide con el valor reportado en el manuscrito",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "manuscrito_no_reproducido_cost_push_agricultura",
+      "valor_observado": "E5=0.0002181076992357036; E10=8.153558849934177e-06",
+      "valor_esperado": "no coincide con el valor reportado en el manuscrito",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "manuscrito_no_reproducido_demand_pull_industria_quimica",
+      "valor_observado": "E5=0.15544877931807533; E10=0.31089755863615065",
+      "valor_esperado": "no coincide con el valor reportado en el manuscrito",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "manuscrito_no_reproducido_demand_pull_servicios",
+      "valor_observado": "E5=0.9344844870466555; E10=1.868968974093311",
+      "valor_esperado": "no coincide con el valor reportado en el manuscrito",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "manuscrito_no_reproducido_demand_pull_transporte",
+      "valor_observado": "E5=0.06014984880916645; E10=0.1202996976183329",
+      "valor_esperado": "no coincide con el valor reportado en el manuscrito",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "manuscrito_no_reproducido_demand_pull_total",
+      "valor_observado": "E5=3.166771669703373; E10=6.333543339406746",
+      "valor_esperado": "no coincide con el valor reportado en el manuscrito",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "manuscrito_no_reproducido_demand_pull_total_discusion",
+      "valor_observado": "E5=3.166771669703373; E10=6.333543339406746",
+      "valor_esperado": "no coincide con el valor reportado en el manuscrito",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    },
+    {
+      "control": "manuscrito_no_reproducido_multiplicador_produccion",
+      "valor_observado": "E5=1.6869623477180617; E10=1.6869623477180617",
+      "valor_esperado": "no coincide con el valor reportado en el manuscrito",
+      "tolerancia_absoluta": null,
+      "cumple": true,
+      "interpretacion": ""
+    }
+  ],
+  "insumos": [
+    {
+      "archivo": "02_resultados_y_diccionario/productos_2013.csv",
+      "sha256_observado": "2101df76af6295d722348aa86fda083172cffb369168a55afeb24c20a481d88c",
+      "sha256_esperado": "2101df76af6295d722348aa86fda083172cffb369168a55afeb24c20a481d88c",
+      "coincide": true
+    },
+    {
+      "archivo": "02_resultados_y_diccionario/matrices/Z_domestica_2013.csv",
+      "sha256_observado": "8ebe5ec5c254a55c4be6899befccd276ddac0d4f67ed22e3a089fc947dd06a7d",
+      "sha256_esperado": "8ebe5ec5c254a55c4be6899befccd276ddac0d4f67ed22e3a089fc947dd06a7d",
+      "coincide": true
+    },
+    {
+      "archivo": "02_resultados_y_diccionario/vectores/produccion_y_utilizacion_2013.csv",
+      "sha256_observado": "2e7b27d44e16c79a35472f777ed4a223b7f4125662d9e63216e2020b1bbef9a1",
+      "sha256_esperado": "2e7b27d44e16c79a35472f777ed4a223b7f4125662d9e63216e2020b1bbef9a1",
+      "coincide": true
+    },
+    {
+      "archivo": "02_concordancias/agregaciones_economia_articulo.csv",
+      "sha256_observado": "8dcb665d2591d129b4de1147fa710b4cb6794c53027628ae4438c6f7febca6a7",
+      "sha256_esperado": "8dcb665d2591d129b4de1147fa710b4cb6794c53027628ae4438c6f7febca6a7",
+      "coincide": true
+    }
+  ],
+  "todos_los_controles_cumplen": true
+}

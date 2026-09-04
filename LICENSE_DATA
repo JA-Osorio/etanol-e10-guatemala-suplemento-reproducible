@@ -6,3 +6,24 @@ suplemento se ofrecen bajo Creative Commons Attribution 4.0 International
 
 La atribución debe citar a los autores del suplemento, la versión consultada y
 las fuentes primarias registradas en `00_fuentes_y_trazabilidad/`.
+
+La dependencia pública MIP Guatemala 2013 reproducible conserva su licencia
+CC BY 4.0 para datos y documentación y MIT para código. Sin embargo, el paquete
+histórico recuperado del análisis E5 contiene una nota de "licencia pendiente"
+que indica no asumir reutilización pública. Por ello, la instantánea histórica,
+el cuaderno y el informe no se redistribuyen. Esta rama pública sanitizada
+registra sus roles y transformaciones, pero omite nombres, rutas, huellas y
+otros identificadores privados. La reproducción pública reconstruye los
+insumos desde la MIP v1.0.0 licenciada y un *offset* de reconstrucción P105
+explícito. Los originales solo podrán incorporarse si quien posea los derechos
+documenta expresamente su licencia.
+
+El archivo
+`01_datos/insumos_publicables/contrafactual_articulo_recuperado_1986_2023.csv`
+es una tabla derivada creada para este suplemento y se publica bajo CC BY 4.0.
+Se obtuvo de arrays Plotly almacenados en salidas ejecutadas y no debe
+describirse como el insumo primario. Los dos cuadernos privados usados como
+fuente principal y corroborante, así como la copia recuperada del libro
+primario, no se redistribuyen. Su licencia no está documentada y esta licencia
+CC BY 4.0 no se les atribuye ni se hace extensiva a ellos. Sus identificadores
+se omiten en esta rama pública.

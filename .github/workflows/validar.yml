@@ -18,23 +18,5 @@ jobs:
         run: python 04_reproduccion_python/reproducir_todo.py
       - name: Ejecutar pruebas
         run: pytest -q
-      - name: Verificar alcance de escenarios
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          needle = "e" + str(5)
-          excluded = {".git"}
-          hits = []
-          for path in Path(".").rglob("*"):
-              if not path.is_file() or any(part in excluded for part in path.parts):
-                  continue
-              try:
-                  text = path.read_text(encoding="utf-8")
-              except (UnicodeDecodeError, OSError):
-                  continue
-              if needle in text.casefold() or needle in path.as_posix().casefold():
-                  hits.append(path.as_posix())
-          if hits:
-              raise SystemExit("Se detectó contenido fuera del alcance: " + ", ".join(hits))
-          PY
+      - name: Verificar que las salidas versionadas son reproducibles
+        run: git diff --exit-code

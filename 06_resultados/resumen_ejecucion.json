@@ -1,19 +1,21 @@
 {
   "abastecimiento_central": "importado",
-  "economia_controles": {
-    "superados": 27,
-    "total": 27
+  "economia_articulo_controles": {
+    "superados": 37,
+    "total": 37
+  },
+  "economia_reconstruccion_actual_controles": {
+    "superados": 28,
+    "total": 28
   },
   "emisiones_controles": {
-    "superados": 9,
-    "total": 9
+    "superados": 93,
+    "total": 93
   },
-  "escenario_base": "E10",
-  "figuras": [
-    "06_resultados/figuras/reduccion_ttw_por_mezcla.png",
-    "06_resultados/figuras/sensibilidad_costo_servicio.png",
-    "06_resultados/figuras/e10_efectos_precio_mip_caso_ilustrativo.png"
-  ],
+  "escenario_economico_corregido": "E10_misma_metodologia",
+  "escenario_economico_historico": "E5_original",
+  "escenario_emisiones": "E10",
+  "figuras": [],
   "mezclas_superiores": [
     "E15",
     "E20"
@@ -23,8 +25,22 @@
     "total": 5
   },
   "verificacion_alcance": {
-    "archivos_fuera_alcance": 0,
+    "controles": {
+      "e10_corregido_es_diez_por_ciento": true,
+      "e10_corregido_es_recalculo_comparable": true,
+      "e5_historico_es_cinco_por_ciento": true,
+      "e5_historico_es_reproduccion_forense": true,
+      "e5_no_es_escenario_politica": true,
+      "politica_inicia_en_e10": true
+    },
+    "economia_corregida": "E10_misma_metodologia",
+    "economia_historica": "E5_original",
+    "escenarios_politica": [
+      "E10",
+      "E15",
+      "E20"
+    ],
     "estado": "PASS"
   },
-  "version": "0.1.0"
+  "version": "0.2.0"
 }

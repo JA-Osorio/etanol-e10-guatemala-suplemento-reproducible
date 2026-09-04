@@ -1,6 +1,7 @@
 control,valor,esperado,cumple
 sha256_productos,coincide,coincide,True
 sha256_a_domestica,coincide,coincide,True
+sha256_z_domestica,coincide,coincide,True
 sha256_a_importada,coincide,coincide,True
 sha256_a_total,coincide,coincide,True
 sha256_leontief_domestica,coincide,coincide,True

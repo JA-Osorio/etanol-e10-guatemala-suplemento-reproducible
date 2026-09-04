@@ -1,0 +1,22 @@
+id_escenario,naturaleza,categoria,numero_productos,delta_y_millones_q_2013,delta_x_millones_q_2013,delta_residual_no_intermedio_domestico_millones_q_2013
+E5_original,reproduccion_forense,Cana de azucar,1,1.8772035273857983,1.8790713809166484,0.8460410833125837
+E5_original,reproduccion_forense,"Agricultura, silvicultura y pesca (sin P010)",29,0.0,0.0072849495410825214,0.00406050764137704
+E5_original,reproduccion_forense,Combustibles y refinacion,3,0.0,0.000921069381148714,0.000783058715490303
+E5_original,reproduccion_forense,Industria quimica ampliada,6,0.0,0.15544877931807533,0.11223402399593337
+E5_original,reproduccion_forense,Transporte y logistica,6,0.0,0.06014984880916645,0.04317374623001963
+E5_original,reproduccion_forense,Servicios (sin transporte y logistica),44,0.0,0.9344844870466555,0.7820718292122348
+E5_original,reproduccion_forense,Otros,63,0.0,0.12941115469059622,0.08883927827815936
+E10_misma_metodologia,recalculo_comparable,Cana de azucar,1,3.7544070547715966,3.7581427618332968,1.6920821666251673
+E10_misma_metodologia,recalculo_comparable,"Agricultura, silvicultura y pesca (sin P010)",29,0.0,0.014569899082165043,0.00812101528275408
+E10_misma_metodologia,recalculo_comparable,Combustibles y refinacion,3,0.0,0.001842138762297428,0.001566117430980606
+E10_misma_metodologia,recalculo_comparable,Industria quimica ampliada,6,0.0,0.31089755863615065,0.22446804799186673
+E10_misma_metodologia,recalculo_comparable,Transporte y logistica,6,0.0,0.1202996976183329,0.08634749246003925
+E10_misma_metodologia,recalculo_comparable,Servicios (sin transporte y logistica),44,0.0,1.868968974093311,1.5641436584244697
+E10_misma_metodologia,recalculo_comparable,Otros,63,0.0,0.25882230938119244,0.17767855655631873
+E10_penalizacion_lhv,sensibilidad_fisica_separada,Cana de azucar,1,3.7544070547715966,3.7581427618332968,1.6920821666251673
+E10_penalizacion_lhv,sensibilidad_fisica_separada,"Agricultura, silvicultura y pesca (sin P010)",29,0.0,0.014569899082165043,0.00812101528275408
+E10_penalizacion_lhv,sensibilidad_fisica_separada,Combustibles y refinacion,3,0.0,0.001842138762297428,0.001566117430980606
+E10_penalizacion_lhv,sensibilidad_fisica_separada,Industria quimica ampliada,6,0.0,0.31089755863615065,0.22446804799186673
+E10_penalizacion_lhv,sensibilidad_fisica_separada,Transporte y logistica,6,0.0,0.1202996976183329,0.08634749246003925
+E10_penalizacion_lhv,sensibilidad_fisica_separada,Servicios (sin transporte y logistica),44,0.0,1.868968974093311,1.5641436584244697
+E10_penalizacion_lhv,sensibilidad_fisica_separada,Otros,63,0.0,0.25882230938119244,0.17767855655631873

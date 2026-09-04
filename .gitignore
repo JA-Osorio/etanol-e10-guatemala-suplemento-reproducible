@@ -5,5 +5,9 @@ __pycache__/
 .coverage
 .venv/
 venv/
+# Los libros/documentos privados se verifican fuera del repositorio.
+*.xlsx
+*.xls
+*.docx
 01_datos/cache_mip/*
 !01_datos/cache_mip/.gitkeep
